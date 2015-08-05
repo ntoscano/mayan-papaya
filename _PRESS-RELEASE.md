@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > TriviaWithFriends
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Show your friends who's boss with a game that will help you establish your mental superiority.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > With TriviaWithFriends, you can compete against you friends to see who's smarter. Earn badges by beating your friends until you've earned enough to evolve into a bonified Trivia Wizard. Let your friends marvel at your intelligence as you beat them over and over and level-up. Challenge players more evolved than you to more quickly evolve and establish your status among mere mortals.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Some people can't get enough trivia questions in their normal daily lives.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > TriviaWithFriends lets you see how you stack up against your friends.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "See if you have what it takes to become a Trivia Wizard. Don't let your friends bring you back down..."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > To get started, just create an account and challenge one of your friends!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > TriviaWithFriends solved all of my life problems... and all I was expecting was trivia questions.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Challenge one of your friends now and gauge your skills now!
