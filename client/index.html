@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <title>TriviaWithFriends</title>
-    <link rel="stylesheet" type="text/css" href="public/styles/style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="public/styles/style.css" /> -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
   </head>
 
-  <body ng-app="TriviaWithFrinds" ng-controller="MainCtrl">
-    
-    <div class="page-header">
+  <body class="text-center" ng-app="TriviaWithFriends" ng-controller="MainCtrl">
+    <div>
       <h1>Trivia With Friends!</h1>
     </div>
 
-    <div ng-view>
+    <div>
+      Question {{1}} of {{5}}
+    </div>
+    <div class="row biggerHeight vertical-align">
+      <div class="col-xs-8 col-xs-offset-2">
+        {{Question goes here}}</div>
     </div>
 
-  </body>
+    <div class="row smallerHeight autoMargin">
+      <div class="col-sm-6 ">
+        <div ng-class="elementInfo.answerClass[0]" ng-click="validateAnswer(0)">
+          {{1st answer}}</div>
+      </div>
+      <div class="col-sm-6 ">
+        <div ng-class="" ng-click="validateAnswer(1)">
+            {{2nd answer}}</div>
+      </div>
+      <div class="col-sm-6 ">
+        <div ng-class="" ng-click="validateAnswer(2)">
+          {{3rd answer}}</div>
+      </div>
+      <div class="col-sm-6 ">
+        <div ng-class="" ng-click="validateAnswer(3)">
+          {{4th answer}}</div>
+      </div>
+    </div>
 
+    <div class="row timer" ng-show="showTimer">
+      {{Timer}}
+    </div>
+    <div id="timerProgress"></div>
+    <div class="col-sm-6 col-sm-offset-3">
+      Score: {{currentScore}}
+    </div>
+  </body>
 </html>
