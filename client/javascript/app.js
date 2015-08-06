@@ -13,7 +13,7 @@ function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('home');
 }]);
 
-
+// eventually will not need this
 app.factory('Questions', ['$http', function($http) {
 
   var obj = { // export object so you can later add new objects and methods to our factories
