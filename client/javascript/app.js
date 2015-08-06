@@ -1,4 +1,3 @@
-
 angular.module('TriviaWithFriends', ['ui.router']);
 
 app.config ([
