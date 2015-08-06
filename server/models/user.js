@@ -5,7 +5,7 @@ var Promise = require('bluebird');
 
 var userSchema = mongoose.Schema({
   userID: {type : Number , unique : true, require : true},
-  experience: {type : Number , require : true},
+  experience: {type : Number , require : true, default: 0},
   username: { type : String , unique : true, required : true},
   password: String
 });
