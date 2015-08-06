@@ -7,46 +7,15 @@
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="app.js"></script>
+    <script src="javascript/trivia.js"></script>
+    <script src="javascript/user.js"></script>
   </head>
 
-  <body class="text-center" ng-app="TriviaWithFriends" ng-controller="MainCtrl">
+  <body class="text-center" ng-app="TriviaWithFriends">
     <div>
       <h1>Trivia With Friends!</h1>
     </div>
-
-    <div>
-      Question {{1}} of {{5}}
-    </div>
-    <div class="row biggerHeight vertical-align">
-      <div class="col-xs-8 col-xs-offset-2">
-        {{Question goes here}}</div>
-    </div>
-
-    <div class="row smallerHeight autoMargin">
-      <div class="col-sm-6 ">
-        <div ng-class="elementInfo.answerClass[0]" ng-click="validateAnswer(0)">
-          {{1st answer}}</div>
-      </div>
-      <div class="col-sm-6 ">
-        <div ng-class="" ng-click="validateAnswer(1)">
-            {{2nd answer}}</div>
-      </div>
-      <div class="col-sm-6 ">
-        <div ng-class="" ng-click="validateAnswer(2)">
-          {{3rd answer}}</div>
-      </div>
-      <div class="col-sm-6 ">
-        <div ng-class="" ng-click="validateAnswer(3)">
-          {{4th answer}}</div>
-      </div>
-    </div>
-
-    <div class="row timer" ng-show="showTimer">
-      {{Timer}}
-    </div>
-    <div id="timerProgress"></div>
-    <div class="col-sm-6 col-sm-offset-3">
-      Score: {{currentScore}}
-    </div>
+    <div ui-view></div>
   </body>
 </html>
