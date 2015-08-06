@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/mayan-papaya/mayan-papaya/issues"
   },
-  "homepage": "https://github.com/mayan-papaya/mayan-papaya#readme"
+  "homepage": "https://github.com/mayan-papaya/mayan-papaya#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
