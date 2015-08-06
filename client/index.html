@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html ng-app=''>
+<html>
+
   <head>
+    <title>TriviaWithFriends</title>
     <link rel="stylesheet" type="text/css" href="public/styles/style.css" />
-  </head>
-  <body>
-    <div class="" ng-controller="">
-    </div>
-    <div ng-view>
-    </div>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+  </head>
+
+  <body ng-app="TriviaWithFrinds" ng-controller="MainCtrl">
+    
+    <div class="page-header">
+      <h1>Trivia With Friends!</h1>
+    </div>
+
+    <div ng-view>
+    </div>
+
   </body>
+
 </html>
