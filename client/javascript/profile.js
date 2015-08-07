@@ -1,9 +1,9 @@
-angular.module('TriviaWithFriends.profile', [])
+(function() {
 
-.controller('ProfileController', ['$scope', '$http', function ($scope, $http) {
+  var app = angular.module('Profile',[]);
 
-  $scope.test = 'profile test info';
+  app.controller('ProfileController', ['$scope', function($scope) {
+    $scope.test = 'test';
+  }]);
 
-
-
-}]);
+})();
