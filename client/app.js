@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('TriviaWithFriends', ['ui.router', 'Trivia']); // need User dependency
+  var app = angular.module('TriviaWithFriends', ['ui.router', 'Trivia', 'Profile']); // need User dependency
 
   app.config ([
   '$stateProvider',
@@ -8,11 +8,14 @@
   function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
-        url: '/home', // / ?
-        templateUrl: 'views/trivia.html',
-        // controller: 'TriviaCtrl',
+        url: '/home',
+        templateUrl: 'views/trivia.html'
+      })
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'views/profile.html'
       });
-    // $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('home');
   }]);
 
 })();
