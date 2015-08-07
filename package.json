@@ -4,7 +4,8 @@
   "description": "TriviaWithFriends",
   "main": "server/app.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha && node node_modules/karma/bin/karma start"
+    "test": "node node_modules/mocha/bin/mocha && node node_modules/karma/bin/karma start",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,5 @@
     "really-need": "^1.6.3",
     "supertest": "^1.0.1",
     "request": "^2.60.0"
-
   }
 }
