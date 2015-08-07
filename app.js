@@ -7,7 +7,6 @@ var app = express();
 
 require('./server/config/middleware.js')(app, express);
 
-
 mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/TriviaWithFriends';
 
 mongoose.connect(mongoURI);
