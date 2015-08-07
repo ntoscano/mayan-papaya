@@ -13,7 +13,7 @@ describe('ProfileController', function() {
     var $controller = $injector.get('$controller');
 
     createController = function() {
-      return $controller('profileController', {
+      return $controller('ProfileController', {
         $scope: $scope
       });
     };
@@ -24,6 +24,6 @@ describe('ProfileController', function() {
   // checking for test is just a test to test the tests
   // we'll probably remove eventually
   it('should have a name property on the $scope.user', function() {
-    expect($scope.test).to.be.a('string');
+    expect($scope.user.name).to.be.a('string');
   });
 });
