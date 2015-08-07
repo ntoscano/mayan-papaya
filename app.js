@@ -1,6 +1,8 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
+var apiKey = require('./server/api-config').apiKey;
+var unirest = require('unirest');
 var app = express();
 
 require('./server/config/middleware.js')(app, express);
@@ -18,6 +20,8 @@ db.once('open', function (callback) {
 });
 
 
+// only run server if app.js was run directly (rather than being
+// imported as a module)
 if (!module.parent) {
   var server = app.listen(3000, function () {
     var host = server.address().address;
@@ -26,6 +30,15 @@ if (!module.parent) {
     console.log('App listening at http://%s:%s', host, port);
   });
 }
+
+app.get('/api/questions', function(req, res) {
+  unirest.get("https://pareshchouhan-trivia-v1.p.mashape.com/v1/getAllQuizQuestions?limit=10&page=1")
+  .header("X-Mashape-Key", apiKey)
+  .header("Accept", "application/json")
+  .end(function (result) {
+    res.send(result.body);
+  });
+});
 
 module.exports = app;
 
