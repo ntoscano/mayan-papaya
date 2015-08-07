@@ -4,7 +4,8 @@
   "description": "TriviaWithFriends",
   "main": "server/app.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha"
+    "test": "node node_modules/mocha/bin/mocha && node node_modules/karma/bin/karma start",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -17,16 +18,22 @@
   "dependencies": {
     "bcrypt": "^0.8.4",
     "bluebird": "^2.9.34",
+    "bower": "^1.4.1",
     "crypto": "0.0.3",
     "express": "^4.13.3",
     "mongoose": "^4.1.1"
   },
   "devDependencies": {
     "chai": "^3.2.0",
+    "karma": "^0.13.8",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
     "mocha": "^2.2.5",
+    "phantomjs": "^1.9.17",
     "really-need": "^1.6.3",
     "supertest": "^1.0.1",
     "request": "^2.60.0"
-
   }
 }
