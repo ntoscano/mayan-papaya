@@ -29,12 +29,19 @@
     };
 
     obj.getQuestions = function() { // retrieves questions from backend
-      return $http.get('/questions').success(function(data) { // using Angular $http service to query our questions route
+      return $http.get('/api/questions').success(function(data) { // using Angular $http service to query our questions route
         // success cb executes when request returns
         // route returns a list of questions
         angular.copy(data, obj.questions); // copy that list to client-side questions object // .copy makes UI update properly
       });
     };
+
+    // unirest.get("https://pareshchouhan-trivia-v1.p.mashape.com/v1/getAllQuizQuestions?limit=10&page=1")
+    //   .header("X-Mashape-Key", "<required>")
+    //   .header("Accept", "application/json")
+    //   .end(function (result) {
+    //     console.log(result.status, result.headers, result.body);
+    //   });
 
     return obj;
   }]);
