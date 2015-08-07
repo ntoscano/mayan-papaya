@@ -1,6 +1,7 @@
 var db = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
+var autoIncrement = require('mongodb-autoincrement');
 
 
 var userSchema = mongoose.Schema({
@@ -9,6 +10,8 @@ var userSchema = mongoose.Schema({
   username: { type : String , unique : true, required : true},
   password: String
 });
+
+userSchema.plugin(autoincrement.userID);
 
 var User = mongoose.model('User', userSchema);
 
