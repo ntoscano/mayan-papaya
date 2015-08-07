@@ -36,6 +36,13 @@
       });
     };
 
+    // unirest.get("https://pareshchouhan-trivia-v1.p.mashape.com/v1/getAllQuizQuestions?limit=10&page=1")
+    //   .header("X-Mashape-Key", "<required>")
+    //   .header("Accept", "application/json")
+    //   .end(function (result) {
+    //     console.log(result.status, result.headers, result.body);
+    //   });
+
     return obj;
   }]);
 
