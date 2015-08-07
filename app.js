@@ -1,13 +1,23 @@
 var express = require('express');
 var path = require('path');
-
+var mongoose = require('mongoose');
 var app = express();
 
-app.use(express.static(path.join(__dirname, 'client')));
+require('./server/config/middleware.js')(app, express);
 
 
-// only run server if app.js was run directly (rather than being
-// imported as a module)
+mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/TriviaWithFriends';
+
+mongoose.connect(mongoURI);
+
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+  console.log('db success');
+});
+
+
 if (!module.parent) {
   var server = app.listen(3000, function () {
     var host = server.address().address;
@@ -18,3 +28,9 @@ if (!module.parent) {
 }
 
 module.exports = app;
+
+
+
+
+
+
