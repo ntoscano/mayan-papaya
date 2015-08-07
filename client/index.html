@@ -14,10 +14,20 @@
     <script src="javascript/user.js"></script>
   </head>
 
-  <body class="text-center" ng-app="TriviaWithFriends">
-    <div>
-      <h1>Trivia With Friends!</h1>
+  <body ng-app="TriviaWithFriends">
+
+
+    <div class="twf-header">
+      <h1>Trivia With Friends</h1>
+
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+      </ul>
     </div>
+
     <div ui-view></div>
+
   </body>
 </html>
