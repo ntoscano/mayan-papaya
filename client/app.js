@@ -8,7 +8,7 @@
   function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('trivia', {
-        url: '/triva',
+        url: '/trivia',
         templateUrl: 'views/trivia.html'
       })
       .state('profile', {
