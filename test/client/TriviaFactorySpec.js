@@ -21,7 +21,7 @@ describe('UserController', function() {
 
   it('should set questions from HTTP response', function() {
     var mockQuestions = [{}, {}, {}];
-    $httpBackend.expectGET('/questions').respond(mockQuestions);
+    $httpBackend.expectGET('/api/questions').respond(mockQuestions);
     Questions.getQuestions();
     $httpBackend.flush();
     expect(Questions.questions).to.eql(mockQuestions);
