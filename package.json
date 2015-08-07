@@ -18,6 +18,7 @@
   "dependencies": {
     "bcrypt": "^0.8.4",
     "bluebird": "^2.9.34",
+    "bower": "^1.4.1",
     "crypto": "0.0.3",
     "express": "^4.13.3",
     "mongoose": "^4.1.1"
