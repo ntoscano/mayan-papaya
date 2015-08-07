@@ -18,6 +18,14 @@
       .state('home', {
         url: '/home',
         templateUrl: 'views/home.html'
+      })
+      .state('signup'{
+        url: '/signup',
+        templateUrl: 'views/signup.html'
+      })
+      .state('signin'{
+        url: '/signin',
+        templateUrl: 'views/signin.html'
       });;
     $urlRouterProvider.otherwise('home');
   }]);
