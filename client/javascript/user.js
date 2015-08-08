@@ -46,7 +46,7 @@
     $scope.signin = function () {
      userFactory.signin($scope.user)
        .then(function (token) {
-         $window.localStorage.setItem('com.shortly', token);
+         $window.localStorage.setItem('com.TriviaWithFriends', token);
          $location.path('/home');
        })
        .catch(function (error) {
@@ -56,7 +56,7 @@
     $scope.signup = function () {
      userFactory.signup($scope.user)
        .then(function (token) {
-         $window.localStorage.setItem('com.shortly', token);
+         $window.localStorage.setItem('com.TriviaWithFriends', token);
          $location.path('/home');
        })
        .catch(function (error) {

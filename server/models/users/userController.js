@@ -30,7 +30,6 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
-    console.log('req', req.body);
     var username  = req.body.username,
         password  = req.body.password,
         create,
@@ -63,7 +62,7 @@ module.exports = {
         res.json({token: token});
       })
       .fail(function (error) {
-        console.log('got here: fail');
+        console.log('got here: fail', error);
         next(error);
       });
   },
