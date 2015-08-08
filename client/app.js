@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('TriviaWithFriends', ['ui.router', 'Trivia', 'Profile', 'Home', 'User']); // need User dependency
+  var app = angular.module('TriviaWithFriends', ['ui.router', 'Trivia', 'Profile', 'Home', 'User']);
 
   app.config ([
   '$stateProvider',
@@ -35,7 +35,7 @@
     $httpProvider.interceptors.push('AttachTokens');
 
     function authenticate($q, user, $state, $timeout) {
-      if (user.isAuthenticated()) {
+      if (user.isAuth()) {
         // Resolve the promise successfully
         return $q.when()
       } else {
