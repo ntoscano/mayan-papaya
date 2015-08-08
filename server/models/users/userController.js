@@ -30,6 +30,7 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
+    console.log('req', req.body);
     var username  = req.body.username,
         password  = req.body.password,
         create,
@@ -41,23 +42,28 @@ module.exports = {
     findOne({username: username})
       .then(function(user) {
         if (user) {
+          console.log('got here');
           next(new Error('User already exist!'));
         } else {
           // make a new user if not one
           create = Q.nbind(User.create, User);
+          console.log('got here: else');
           newUser = {
             username: username,
             password: password
           };
+          console.log('got here: return', newUser, "~~~", create(newUser));
           return create(newUser);
         }
       })
       .then(function (user) {
+        console.log('got here: then');
         // create token to send back for auth
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
       })
       .fail(function (error) {
+        console.log('got here: fail');
         next(error);
       });
   },

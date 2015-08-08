@@ -3,37 +3,66 @@
   var app = angular.module('User',[]);
 
 
-  app.factory('userFactory', ['$http', function($http) {
+  app.factory('userFactory', ['$http', function($http, $location, $window) {
 
     var obj = {} // export object so you can later add new objects and methods to our factories
 
-    obj.login = function(username, password) {
+    obj.signin = function (user) {
       return $http.post('/api/users/signin', {
-        username: username,
-        password, password
-      }).success(function(data) { 
-        console.log('success', data);
+        username: user.username,
+        password: user.password
+      })
+      .then(function (resp) {
+        return resp.data.token;
       });
     };
 
-    obj.signup = function(username, password){
+    obj.signup = function (user) {
       return $http.post('/api/users/signup', {
-        username: username,
-        password, password
+        username: user.username,
+        password: user.password
       })
+      .then(function (resp) {
+        return resp.data.token;
+      });
     };
+
+    obj.isAuth = function () {
+      return !!$window.localStorage.getItem('com.shortly');
+    };
+
+    obj.signout = function () {
+      $window.localStorage.removeItem('com.TriviaWithFriends');
+      $location.path('/signin');
+    };
+
 
     return obj;
   }]);
 
-  app.controller('userCtrl', ['$scope', 'userFactory', function($scope, userFactory) {
+  app.controller('userCtrl', ['$scope', '$window', '$location', 'userFactory', function($scope, $window, $location, userFactory) {
     $scope.test = 'test';
-    $scope.username = '';
-    $scope.password = '';
-    $scope.login = userFactory.login;
-    $scope.signup = userFactory.signup.success(function(data) { 
-        console.log('success', data);
-      });
+    $scope.user = {}
+    $scope.signin = function () {
+     userFactory.signin($scope.user)
+       .then(function (token) {
+         $window.localStorage.setItem('com.shortly', token);
+         $location.path('/home');
+       })
+       .catch(function (error) {
+         console.error(error);
+       });
+    };
+    $scope.signup = function () {
+     userFactory.signup($scope.user)
+       .then(function (token) {
+         $window.localStorage.setItem('com.shortly', token);
+         $location.path('/home');
+       })
+       .catch(function (error) {
+         console.error(error);
+       });
+    };
 
   }]);
 

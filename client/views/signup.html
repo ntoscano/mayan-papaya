@@ -8,16 +8,16 @@
     <form action="">
       <ul>
         <li>
-          <span class="un"><i class="fa fa-user"></i></span><input type="text" required class="text" placeholder="User Name Or Email" ng-model="username"/>
+          <span class="un"><i class="fa fa-user"></i></span><input type="text" required class="text" placeholder="User Name Or Email" ng-model="user.username"/>
         </li>
         <li>
-          <span class="un"><i class="fa fa-lock"></i></span><input type="password" required class="text" placeholder="User Password" ng-model="password"/>
+          <span class="un"><i class="fa fa-lock"></i></span><input type="password" required class="text" placeholder="User Password" ng-model="user.password"/>
         </li>
         <li>
           <span class="un"><i class="fa fa-lock"></i></span><input type="password" required class="text" placeholder="Confirm Password"/>
         </li>
         <li>
-          <input type="submit" value="SIGN UP" ng-click="signup(username, password)"class="btn">
+          <input type="submit" value="SIGN UP" ng-click="signup()"class="btn">
         </li>
       </ul>
     </form>
