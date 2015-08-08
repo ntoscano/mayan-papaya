@@ -19,11 +19,11 @@
         url: '/home',
         templateUrl: 'views/home.html'
       })
-      .state('signup'{
+      .state('signup', {
         url: '/signup',
         templateUrl: 'views/signup.html'
       })
-      .state('signin'{
+      .state('signin', {
         url: '/signin',
         templateUrl: 'views/signin.html'
       });;
