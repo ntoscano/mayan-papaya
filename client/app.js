@@ -34,8 +34,8 @@
     $urlRouterProvider.otherwise('signin');
     $httpProvider.interceptors.push('AttachTokens');
 
-    function authenticate($q, user, $state, $timeout) {
-      if (user.isAuth()) {
+    function authenticate($q, userFactory, $state, $timeout) {
+      if (userFactory.isAuth()) {
         // Resolve the promise successfully
         return $q.when()
       } else {
