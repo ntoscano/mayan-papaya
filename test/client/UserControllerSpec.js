@@ -3,7 +3,7 @@ var expect = chai.expect;
 describe('UserController', function() {
   var $scope, $rootScope;
 
-  beforeEach(module('user'));
+  beforeEach(module('User'));
 
   beforeEach(inject(function($injector) {
     $rootScope = $injector.get('$rootScope');
