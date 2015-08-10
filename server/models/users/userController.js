@@ -10,6 +10,7 @@ module.exports = {
     var findUser = Q.nbind(User.findOne, User);
     findUser({username: username})
       .then(function (user) {
+        console.log(user);
         if (!user) {
           next(new Error('User does not exist'));
         } else {
@@ -92,3 +93,4 @@ module.exports = {
     }
   }
 };
+

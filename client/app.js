@@ -7,21 +7,25 @@
   '$urlRouterProvider',
   '$httpProvider',
   function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+    //Authentication for navigating the site has been disabled.
+    //We will re-engage this later when the feature is working.
+
     $stateProvider
       .state('trivia', {
         url: '/trivia',
-        templateUrl: 'views/trivia.html',
-        resolve: {authenticate : authenticate}
+        templateUrl: 'views/trivia.html'
+        // resolve: {authenticate : authenticate}
       })
       .state('profile', {
         url: '/profile',
-        templateUrl: 'views/profile.html',
-        resolve: {authenticate : authenticate}
+        templateUrl: 'views/profile.html'
+        // resolve: {authenticate : authenticate}
       })
       .state('home', {
         url: '/home',
-        templateUrl: 'views/home.html',
-        resolve: {authenticate : authenticate}
+        templateUrl: 'views/home.html'
+        // resolve: {authenticate : authenticate}
       })
       .state('signup', {
         url: '/signup',
@@ -30,25 +34,25 @@
       .state('signin', {
         url: '/signin',
         templateUrl: 'views/signin.html'
-      });;
-    $urlRouterProvider.otherwise('signin');
+      });
+    $urlRouterProvider.otherwise('home');
     $httpProvider.interceptors.push('AttachTokens');
 
     function authenticate($q, userFactory, $state, $timeout) {
       if (userFactory.isAuth()) {
         // Resolve the promise successfully
-        return $q.when()
+        return $q.when();
       } else {
         // The next bit of code is asynchronously tricky.
 
         $timeout(function() {
           // This code runs after the authentication promise has been rejected.
           // Go to the log-in page
-          $state.go('signin')
+          $state.go('signin');
         })
 
         // Reject the authentication promise to prevent the state from loading
-        return $q.reject()
+        return $q.reject();
       }
     }
 
@@ -61,7 +65,7 @@
     // then add it to the header so the server can validate the request
     var attach = {
       request: function (object) {
-        var jwt = $window.localStorage.getItem('com.shortly');
+        var jwt = $window.localStorage.getItem('com.TriviaWithFriends');
         if (jwt) {
           object.headers['x-access-token'] = jwt;
         }
