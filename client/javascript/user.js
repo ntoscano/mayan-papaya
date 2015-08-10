@@ -28,7 +28,7 @@
     };
 
     obj.isAuth = function () {
-      return !!$window.localStorage.getItem('com.shortly');
+      return !!$window.localStorage.getItem('com.TriviaWithFriends');
     };
 
     obj.signout = function () {
