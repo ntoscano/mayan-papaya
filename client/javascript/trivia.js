@@ -36,18 +36,19 @@
       });
     };
 
-    // unirest.get("https://pareshchouhan-trivia-v1.p.mashape.com/v1/getAllQuizQuestions?limit=10&page=1")
-    //   .header("X-Mashape-Key", "<required>")
-    //   .header("Accept", "application/json")
-    //   .end(function (result) {
-    //     console.log(result.status, result.headers, result.body);
-    //   });
-
     return obj;
   }]);
 
   app.controller('TriviaCtrl', ['$scope', 'Questions', function($scope, Questions) {
     $scope.questions = Questions.questions; // Questions factory returns an object. Then we access its questions key
   }]);
+
+
+  // unirest.get("https://pareshchouhan-trivia-v1.p.mashape.com/v1/getAllQuizQuestions?limit=10&page=1")
+    //   .header("X-Mashape-Key", "<required>")
+    //   .header("Accept", "application/json")
+    //   .end(function (result) {
+    //     console.log(result.status, result.headers, result.body);
+    //   });
 
 })();
