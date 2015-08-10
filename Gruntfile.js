@@ -1,5 +1,8 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    jshint: {
+      src: ['server/**/*.js', 'client/**/*.js', '!client/lib/**/*.js']
+    },
     mochaTest: {
       src: ['test/server/**/*.js']
     },
@@ -10,9 +13,10 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-karma');
 
-  grunt.registerTask('test', ['mochaTest', 'karma']);
+  grunt.registerTask('test', ['jshint', 'mochaTest', 'karma']);
   grunt.registerTask('default', ['test']);
 };
