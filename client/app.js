@@ -27,6 +27,11 @@
         templateUrl: 'views/home.html'
         // resolve: {authenticate : authenticate}
       })
+      .state('stats', {
+        url: '/stats',
+        templateUrl: 'views/stats.html'
+        // resolve: {authenticate : authenticate}
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: 'views/signup.html'
