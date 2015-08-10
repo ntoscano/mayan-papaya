@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('TriviaWithFriends', ['ui.router', 'Navigation', 'Trivia', 'Profile', 'Home', 'User']); // need User dependency
+  var app = angular.module('TriviaWithFriends', ['ui.router', 'Navigation', 'Footer', 'Trivia', 'Profile', 'Home', 'User', 'Stats']); // need User dependency
 
   app.config ([
   '$stateProvider',
@@ -32,6 +32,16 @@
         templateUrl: 'views/stats.html'
         // resolve: {authenticate : authenticate}
       })
+          .state('stats.global', {
+            url: "/global",
+            templateUrl: "views/stats.global.html"
+            // resolve: {authenticate : authenticate}
+          })
+          .state('stats.personal', {
+            url: "/personal",
+            templateUrl: "views/stats.personal.html"
+            // resolve: {authenticate : authenticate}
+          })
       .state('signup', {
         url: '/signup',
         templateUrl: 'views/signup.html'

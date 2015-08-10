@@ -9,19 +9,19 @@
       <!-- the stats menu -->
       <div class="stats-btns-col col-md-2 col-md-offset-2">
 
+        <!-- this will be a subnav for the different stats windows -->
         <div class="stats-btns btn-group-vertical btn-group-lg" role="group" aria-label="stats-nav">
-          <button type="button" class="stats-btn btn btn-default">Global Rank</button>
-          <button type="button" class="stats-btn btn btn-default">Group Rank</button>
-          <button type="button" class="stats-btn btn btn-default">Personal Stats</button>
+          <a class="stats-btn btn btn-default" ui-sref=".global">Global Rank</a>
+          <a class="stats-btn btn btn-default" ui-sref=".personal">Personal Stats</a>
         </div>
 
       </div>
 
       <!-- stats window -->
       <div class="col-md-6">
-        <!-- d3 stuff will go here -->
-        <div class=" stats-chart-view text-center">
-          <h2>D3 will go here</h2>
+        <div class="stats-chart-view text-center">
+          <!-- the nested view for the stats -->
+          <div ui-view></div>
         </div>
       </div>
 
