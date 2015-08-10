@@ -38,23 +38,24 @@
     $urlRouterProvider.otherwise('home');
     $httpProvider.interceptors.push('AttachTokens');
 
-    function authenticate($q, userFactory, $state, $timeout) {
-      if (userFactory.isAuth()) {
-        // Resolve the promise successfully
-        return $q.when();
-      } else {
-        // The next bit of code is asynchronously tricky.
+    // reenable this when setting up auth
+    // var authenticate = function($q, userFactory, $state, $timeout) {
+    //   if (userFactory.isAuth()) {
+    //     // Resolve the promise successfully
+    //     return $q.when();
+    //   } else {
+    //     // The next bit of code is asynchronously tricky.
 
-        $timeout(function() {
-          // This code runs after the authentication promise has been rejected.
-          // Go to the log-in page
-          $state.go('signin');
-        });
+    //     $timeout(function() {
+    //       // This code runs after the authentication promise has been rejected.
+    //       // Go to the log-in page
+    //       $state.go('signin');
+    //     });
 
-        // Reject the authentication promise to prevent the state from loading
-        return $q.reject();
-      }
-    }
+    //     // Reject the authentication promise to prevent the state from loading
+    //     return $q.reject();
+    //   }
+    // };
 
   }]);
 

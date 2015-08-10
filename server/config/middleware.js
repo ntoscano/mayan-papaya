@@ -5,7 +5,9 @@ var helpers = require('./helper.js');
 
 module.exports = function (app, express) {
   var userRouter = express.Router();
-  var linkRouter = express.Router();
+
+  // unused at the moment
+  // var linkRouter = express.Router();
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));

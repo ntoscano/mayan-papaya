@@ -52,7 +52,7 @@ module.exports = {
             username: username,
             password: password
           };
-          console.log('got here: return', newUser, "~~~", create(newUser));
+          console.log('got here: return', newUser, '~~~', create(newUser));
           return create(newUser);
         }
       })
