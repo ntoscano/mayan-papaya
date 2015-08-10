@@ -3,5 +3,5 @@ node_js:
   - '0.10'
 before_install: npm install -g grunt-cli
 script:
-  - echo "var apiKey=''" > server/api-config.js
+  - echo "var apiKey='';" > server/api-config.js
   - grunt test
