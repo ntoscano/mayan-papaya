@@ -5,7 +5,7 @@
 
   app.factory('userFactory', ['$http', function($http, $location, $window) {
 
-    var obj = {} // export object so you can later add new objects and methods to our factories
+    var obj = {}; // export object so you can later add new objects and methods to our factories
 
     obj.signin = function (user) {
       return $http.post('/api/users/signin', {
@@ -42,7 +42,7 @@
 
   app.controller('userCtrl', ['$scope', '$window', '$location', 'userFactory', function($scope, $window, $location, userFactory) {
     $scope.test = 'test';
-    $scope.user = {}
+    $scope.user = {};
     $scope.signin = function () {
      userFactory.signin($scope.user)
        .then(function (token) {
