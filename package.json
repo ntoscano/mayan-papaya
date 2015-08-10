@@ -24,6 +24,7 @@
     "crypto": "0.0.3",
     "express": "^4.13.3",
     "express-partials": "^0.3.0",
+    "grunt": "^0.4.5",
     "jwt-simple": "^0.3.0",
     "mongodb-autoincrement": "^1.0.0",
     "mongoose": "^4.1.1",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "chai": "^3.2.0",
+    "grunt-mocha-test": "^0.12.7",
     "karma": "^0.13.8",
     "karma-chrome-launcher": "^0.2.0",
     "karma-firefox-launcher": "^0.1.6",
@@ -41,7 +43,7 @@
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
     "really-need": "^1.6.3",
-    "supertest": "^1.0.1",
-    "request": "^2.60.0"
+    "request": "^2.60.0",
+    "supertest": "^1.0.1"
   }
 }
