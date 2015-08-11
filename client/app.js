@@ -33,13 +33,13 @@
         // resolve: {authenticate : authenticate}
       })
           .state('stats.global', {
-            url: "/global",
-            templateUrl: "views/stats.global.html"
+            url: '/global',
+            templateUrl: 'views/stats.global.html'
             // resolve: {authenticate : authenticate}
           })
           .state('stats.personal', {
-            url: "/personal",
-            templateUrl: "views/stats.personal.html"
+            url: '/personal',
+            templateUrl: 'views/stats.personal.html'
             // resolve: {authenticate : authenticate}
           })
       .state('signup', {

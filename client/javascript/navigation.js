@@ -2,10 +2,15 @@
 
   var app = angular.module('Navigation',[]);
 
-  app.controller('NavigationController', ['$scope', '$location', function($scope, $location) {
+  app.controller('NavigationController', ['$scope', '$location', '$state', function($scope, $location, $state) {
 
-    //need to give focus to home tab on load. Right now the bootstrap jquery
-    //plugin is not working for this
+    $scope.getClass = function(stateName) {
+      if (stateName === $state.current.name) {
+        return 'active';
+      } else {
+        return '';
+      }
+    };
 
   }]);
 
