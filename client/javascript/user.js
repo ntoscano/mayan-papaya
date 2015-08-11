@@ -3,7 +3,7 @@
   var app = angular.module('User',[]);
 
 
-  app.factory('userFactory', ['$http', function($http, $location, $window) {
+  app.factory('UserFactory', ['$http', function($http, $location, $window) {
 
     var obj = {}; // export object so you can later add new objects and methods to our factories
 
@@ -40,11 +40,11 @@
     return obj;
   }]);
 
-  app.controller('userCtrl', ['$scope', '$window', '$location', 'userFactory', function($scope, $window, $location, userFactory) {
+  app.controller('UserController', ['$scope', '$window', '$location', 'UserFactory', function($scope, $window, $location, UserFactory) {
     $scope.test = 'test';
     $scope.user = {};
     $scope.signin = function () {
-     userFactory.signin($scope.user)
+     UserFactory.signin($scope.user)
        .then(function (token) {
          $window.localStorage.setItem('com.TriviaWithFriends', token);
          $location.path('/home');
@@ -54,7 +54,7 @@
        });
     };
     $scope.signup = function () {
-     userFactory.signup($scope.user)
+     UserFactory.signup($scope.user)
        .then(function (token) {
          $window.localStorage.setItem('com.TriviaWithFriends', token);
          $location.path('/home');
