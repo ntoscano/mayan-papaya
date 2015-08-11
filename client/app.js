@@ -12,19 +12,30 @@
     //We will re-engage this later when the feature is working.
 
     $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'views/home.html'
+        // resolve: {authenticate : authenticate}
+      })
       .state('trivia', {
         url: '/trivia',
         templateUrl: 'views/trivia.html'
         // resolve: {authenticate : authenticate}
       })
+          .state('trivia.categories', {
+            url: '/categories',
+            templateUrl: 'views/trivia.categories.html'
+            // resolve: {authenticate : authenticate}
+          })
+          .state('trivia.play', {
+            url: '/play',
+            templateUrl: 'views/trivia.play.html'
+            // resolve: {authenticate : authenticate}
+          })
+
       .state('profile', {
         url: '/profile',
         templateUrl: 'views/profile.html'
-        // resolve: {authenticate : authenticate}
-      })
-      .state('home', {
-        url: '/home',
-        templateUrl: 'views/home.html'
         // resolve: {authenticate : authenticate}
       })
       .state('stats', {
@@ -42,6 +53,7 @@
             templateUrl: 'views/stats.personal.html'
             // resolve: {authenticate : authenticate}
           })
+
       .state('signup', {
         url: '/signup',
         templateUrl: 'views/signup.html'

@@ -49,7 +49,11 @@
           console.log($scope.questions);
         });
     };
-    $scope.getQuestions();
+
+    //disable for testing
+    // $scope.getQuestions();
+
+
 
   }]);
 
