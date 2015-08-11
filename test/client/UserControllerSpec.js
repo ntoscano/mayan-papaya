@@ -13,7 +13,7 @@ describe('UserController', function() {
     var $controller = $injector.get('$controller');
 
     createController = function() {
-      return $controller('userCtrl', {
+      return $controller('UserController', {
         $scope: $scope
       });
     };

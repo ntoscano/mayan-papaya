@@ -1,6 +1,6 @@
 var expect = chai.expect;
 
-describe('UserController', function() {
+describe('Questions', function() {
   var Questions, $httpBackend;
 
   beforeEach(module('Trivia'));
@@ -21,7 +21,7 @@ describe('UserController', function() {
 
   it('should set questions from HTTP response', function() {
     var mockQuestions = [{}, {}, {}];
-    $httpBackend.expectGET('/api/questions').respond(mockQuestions);
+    $httpBackend.expectGET('/api/trivia').respond(mockQuestions);
     Questions.getQuestions();
     $httpBackend.flush();
     expect(Questions.questions).to.eql(mockQuestions);

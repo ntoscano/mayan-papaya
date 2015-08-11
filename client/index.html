@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TriviaWithFriends</title>
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <title>Trivia with Friends</title>
+
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+
     <script src="app.js"></script>
     <script src="javascript/navigation.js"></script>
     <script src="javascript/footer.js"></script>
@@ -22,7 +24,7 @@
     <div class="row twf-header">
       <div class="col-md-8 col-md-offset-2">
 
-        <h1 class="header-title">Trivia With Friends</h1>
+        <h1 class="header-title">Trivia with Friends</h1>
 
         <ul class="nav nav-tabs" ng-controller="NavigationController">
           <li ng-class="getClass('home')" role="presentation"><a href="/#/home">Home</a></li>
