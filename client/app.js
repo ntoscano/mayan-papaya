@@ -54,8 +54,8 @@
     $httpProvider.interceptors.push('AttachTokens');
 
     // reenable this when setting up auth
-    // var authenticate = function($q, userFactory, $state, $timeout) {
-    //   if (userFactory.isAuth()) {
+    // var authenticate = function($q, UserFactory, $state, $timeout) {
+    //   if (UserFactory.isAuth()) {
     //     // Resolve the promise successfully
     //     return $q.when();
     //   } else {
@@ -91,7 +91,7 @@
     };
     return attach;
   })
-  .run(function ($rootScope, $location, userFactory) {
+  .run(function ($rootScope, $location, UserFactory) {
     // here inside the run phase of angular, our services and controllers
     // have just been registered and our app is ready
     // however, we want to make sure the user is authorized
@@ -100,7 +100,7 @@
     // and send that token to the server to see if it is a real user or hasn't expired
     // if it's not valid, we then redirect back to signin/signup
     $rootScope.$on('$routeChangeStart', function (evt, next, current) {
-      if (next.$$route && next.$$route.authenticate && !userFactory.isAuth()) {
+      if (next.$$route && next.$$route.authenticate && !UserFactory.isAuth()) {
         $location.path('/signin');
       }
     });

@@ -24,4 +24,12 @@ describe('TriviaController', function() {
   it('should have a questions property on the $scope', function() {
     expect($scope.questions).to.be.an('array');
   });
+
+  it('should have a question with property "question" on the $scope', function() {
+    expect($scope.questions[0].question).to.exist;
+  });
+
+  it('should have a question with string property "answer" on the $scope', function() {
+    expect($scope.questions[0].answer).to.be.an('string');
+  });
 });
