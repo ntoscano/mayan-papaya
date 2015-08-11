@@ -19,7 +19,10 @@
     return obj;
   }]);
 
-  app.controller('TriviaCtrl', ['$scope', '$http', 'Questions', function($scope, $http, Questions) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', function($scope, $http, Questions) {
+
+    //test won't pass until this prop is defined.
+    $scope.questions = [];
 
     $scope.getQuestions = function() {
       Questions.getQuestions()

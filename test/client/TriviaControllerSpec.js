@@ -13,7 +13,7 @@ describe('TriviaController', function() {
     var $controller = $injector.get('$controller');
 
     createController = function() {
-      return $controller('TriviaCtrl', {
+      return $controller('TriviaController', {
         $scope: $scope
       });
     };
