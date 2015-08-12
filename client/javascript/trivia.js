@@ -26,7 +26,9 @@
       _.each(answer, function(char) {
         if(char.match(to_) !== null) {
           result.push('_');
-        } else result.push(char);
+        } else {
+          result.push(char);
+        }
       });
       return result.join('');
     };
@@ -37,13 +39,6 @@
         // success cb executes when request returns
         // route returns a list of questions
         obj.questions = data;
-
-        //clean the italics from the answers and add the clue to the object
-        _.each(obj.questions, function(q) {
-          q.answer = obj.getCleanAnswer(q.answer);
-          q.clue = obj.getClue(q.answer);
-        });
-
       });
     };
 
@@ -123,11 +118,18 @@
     };
 
     $scope.getQuestions = function() {
-      //enable when ready
+
       Questions.getQuestions()
         .success(function(data) {
           $scope.questions = data;
+
+          //clean the italics from the answers and add the clue to the object
+          _.each($scope.questions, function(q) {
+            q.answer = Questions.getCleanAnswer(q.answer);
+            q.clue = Questions.getClue(q.answer);
+          });
           console.log($scope.questions);
+
         });
     };
     $scope.getQuestions();
