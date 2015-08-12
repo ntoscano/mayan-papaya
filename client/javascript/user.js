@@ -3,7 +3,7 @@
   var app = angular.module('User',[]);
 
 
-  app.factory('UserFactory', ['$http', function($http, $location, $window) {
+  app.factory('UserFactory', function($http, $location, $window) {
 
     var obj = {}; // export object so you can later add new objects and methods to our factories
 
@@ -38,7 +38,7 @@
 
 
     return obj;
-  }]);
+  });
 
   app.controller('UserController', ['$scope', '$window', '$location', 'UserFactory', function($scope, $window, $location, UserFactory) {
     $scope.test = 'test';
