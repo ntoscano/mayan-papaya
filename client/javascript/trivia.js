@@ -113,23 +113,24 @@
       }
     ];
 
+    //for question navigation
+    $scope.navLoc = 0;
+    $scope.nextLoc = function() {
+      $scope.navLoc++;
+    };
+    $scope.isLoc = function(index) {
+      return index === $scope.navLoc;
+    };
+
     $scope.getQuestions = function() {
       //enable when ready
-      // Questions.getQuestions()
-      //   .success(function(data) {
-      //     $scope.questions = data;
-      //     console.log($scope.questions);
-      //   });
-
-      //for testing only
-      _.each($scope.questions, function(q) {
-        q.answer = Questions.getCleanAnswer(q.answer);
-        q.clue = Questions.getClue(q.answer);
-      });
+      Questions.getQuestions()
+        .success(function(data) {
+          $scope.questions = data;
+          console.log($scope.questions);
+        });
     };
     $scope.getQuestions();
-
-
 
   }]);
 
