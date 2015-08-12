@@ -89,7 +89,7 @@
         event.preventDefault();
         $state.go('signin');
       }
-    })
+    });
   });
 })();
 
