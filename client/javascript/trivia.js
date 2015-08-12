@@ -3,6 +3,7 @@
   var app = angular.module('Trivia', []);
 
   //factory to get and hold question data
+  //also has methods for cleaning and augmenting question data
   app.factory('Questions', ['$http', function($http) {
 
     var obj = {};
@@ -44,6 +45,7 @@
 
     return obj;
   }]);
+
 
   app.controller('TriviaController', ['$scope', '$http', 'Questions', function($scope, $http, Questions) {
 
@@ -113,26 +115,36 @@
     $scope.nextLoc = function() {
       $scope.navLoc++;
     };
-    $scope.isLoc = function(index) {
-      return index === $scope.navLoc;
-    };
 
+    //for getting trivia questions from the jService API
     $scope.getQuestions = function() {
-
       Questions.getQuestions()
         .success(function(data) {
           $scope.questions = data;
-
           //clean the italics from the answers and add the clue to the object
           _.each($scope.questions, function(q) {
             q.answer = Questions.getCleanAnswer(q.answer);
             q.clue = Questions.getClue(q.answer);
           });
-          console.log($scope.questions);
-
+          // console.log($scope.questions);
         });
     };
     $scope.getQuestions();
+
+    //for handling user answers to trivia
+    $scope.score = 0;
+    $scope.checkAnswer = function(keyEvent, question) {
+      if(keyEvent.keyCode === 13) {
+        var userAns = keyEvent.srcElement.value;
+        if(userAns === question.answer) {
+          $scope.score += question.value;
+        } else {
+          $scope.score -= Math.floor(question.value / 10);
+        }
+        $scope.nextLoc();
+      }
+    };
+    $scope.updateUserData = function() {};
 
   }]);
 
