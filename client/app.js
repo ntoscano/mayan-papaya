@@ -8,74 +8,58 @@
   '$httpProvider',
   function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-    var authenticate = function($q, UserFactory, $state, $timeout) {
-      if (UserFactory.isAuth()) {
-        // Resolve the promise successfully
-        return $q.when();
-      } else {
-        // The next bit of code is asynchronously tricky.
-
-        $timeout(function() {
-          // This code runs after the authentication promise has been rejected.
-          // Go to the log-in page
-          $state.go('signin');
-        });
-
-        // Reject the authentication promise to prevent the state from loading
-        return $q.reject();
-      }
-    };
-
     $stateProvider
       .state('home', {
         url: '/home',
         templateUrl: 'views/home.html',
-        resolve: {authenticate : authenticate}
+        data: { publicallyAccessible: false }
       })
       .state('trivia', {
         url: '/trivia',
         templateUrl: 'views/trivia.html',
-        resolve: {authenticate : authenticate}
+        data: { publicallyAccessible: false }
       })
           .state('trivia.categories', {
             url: '/categories',
-            templateUrl: 'views/trivia.categories.html'
-            // resolve: {authenticate : authenticate}
+            templateUrl: 'views/trivia.categories.html',
+            data: { publicallyAccessible: false }
           })
           .state('trivia.play', {
             url: '/play',
-            templateUrl: 'views/trivia.play.html'
-            // resolve: {authenticate : authenticate}
+            templateUrl: 'views/trivia.play.html',
+            data: { publicallyAccessible: false }
           })
 
       .state('profile', {
         url: '/profile',
         templateUrl: 'views/profile.html',
-        resolve: {authenticate : authenticate}
+        data: { publicallyAccessible: false }
       })
       .state('stats', {
         url: '/stats',
         templateUrl: 'views/stats.html',
-        resolve: {authenticate : authenticate}
+        data: { publicallyAccessible: false }
       })
           .state('stats.global', {
             url: '/global',
             templateUrl: 'views/stats.global.html',
-            resolve: {authenticate : authenticate}
+            data: { publicallyAccessible: false }
           })
           .state('stats.personal', {
             url: '/personal',
             templateUrl: 'views/stats.personal.html',
-            resolve: {authenticate : authenticate}
+            data: { publicallyAccessible: false }
           })
 
       .state('signup', {
         url: '/signup',
-        templateUrl: 'views/signup.html'
+        templateUrl: 'views/signup.html',
+        data: { publicallyAccessible: true }
       })
       .state('signin', {
         url: '/signin',
-        templateUrl: 'views/signin.html'
+        templateUrl: 'views/signin.html',
+        data: { publicallyAccessible: true }
       });
     $urlRouterProvider.otherwise('home');
     $httpProvider.interceptors.push('AttachTokens');
@@ -99,7 +83,13 @@
     };
     return attach;
   })
-  .run(function ($rootScope, $location, UserFactory) {
+  .run(function ($rootScope, $state, UserFactory) {
+    $rootScope.$on('$stateChangeStart', function(event, next) {
+      if (!next.data.publicallyAccessible && !UserFactory.isAuth()) {
+        event.preventDefault();
+        $state.go('signin');
+      }
+    })
   });
 })();
 

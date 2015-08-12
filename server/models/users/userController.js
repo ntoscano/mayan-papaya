@@ -2,8 +2,10 @@ var User = require('./userModel.js'),
     Q    = require('q'),
     jwt  = require('jwt-simple');
 
+var secret = 'This really shouldn\'t be in the git repo. Replace with a secure secret eventually.';
+
 module.exports = {
-  signin: function (req, res, next) {
+  signin: function (req, res) {
     var username = req.body.username,
         password = req.body.password;
 
@@ -12,25 +14,28 @@ module.exports = {
       .then(function (user) {
         console.log(user);
         if (!user) {
-          next(new Error('User does not exist'));
+          res.statusCode = 403;
+          res.json({error: 'Incorrect username or password'});
         } else {
-          return user.comparePasswords(password)
+          user.comparePasswords(password)
             .then(function(foundUser) {
               if (foundUser) {
-                var token = jwt.encode(user, 'secret');
+                var token = jwt.encode(user, secret);
                 res.json({token: token});
               } else {
-                return next(new Error('No user'));
+                res.statusCode = 403;
+                res.json({error: 'Incorrect username or password'});
               }
             });
         }
       })
       .fail(function (error) {
-        next(error);
+        res.statusCode = 403;
+        res.json({error: 'Incorrect username or password'});
       });
   },
 
-  signup: function (req, res, next) {
+  signup: function (req, res) {
     var username  = req.body.username,
         password  = req.body.password,
         create,
@@ -42,8 +47,8 @@ module.exports = {
     findOne({username: username})
       .then(function(user) {
         if (user) {
-          console.log('got here');
-          next(new Error('User already exist!'));
+          res.statusCode = 403;
+          res.json({error: 'Username taken'});
         } else {
           // make a new user if not one
           create = Q.nbind(User.create, User);
@@ -59,25 +64,27 @@ module.exports = {
       .then(function (user) {
         console.log('got here: then');
         // create token to send back for auth
-        var token = jwt.encode(user, 'secret');
+        var token = jwt.encode(user, secret);
         res.json({token: token});
       })
       .fail(function (error) {
-        console.log('got here: fail', error);
-        next(error);
+        console.log('Signup error:', error);
+        res.statusCode = 500;
+        res.json({error: 'Server error'});
       });
   },
 
-  checkAuth: function (req, res, next) {
+  checkAuth: function (req, res) {
     // checking to see if the user is authenticated
     // grab the token in the header is any
     // then decode the token, which we end up being the user object
     // check to see if that user exists in the database
     var token = req.headers['x-access-token'];
     if (!token) {
-      next(new Error('No token'));
+      res.statusCode = 403;
+      res.json({error: 'No token provided'});
     } else {
-      var user = jwt.decode(token, 'secret');
+      var user = jwt.decode(token, secret);
       var findUser = Q.nbind(User.findOne, User);
       findUser({username: user.username})
         .then(function (foundUser) {
@@ -88,7 +95,8 @@ module.exports = {
           }
         })
         .fail(function (error) {
-          next(error);
+          res.statusCode = 500;
+          res.json({error: 'Server error'});
         });
     }
   }
