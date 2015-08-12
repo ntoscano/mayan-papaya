@@ -45,7 +45,8 @@ module.exports = function(grunt) {
           // remove for production - allows console.log, etc
           'devel': true,
           globals: {
-            'angular': false
+            'angular': false,
+            '_': false
           }
         }
       },

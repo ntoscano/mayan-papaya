@@ -1,14 +1,10 @@
 <div class="text-center" ng-controller="TriviaController" id="views/trivia.html">
 
-  <div class="col-md-8 col-md-offset-2">
-    <h4>{{questions[0].question}}</h4>
-    <table class="table table-hover text-center">
-      <tr>
-        <td>
-          {{questions[0].answer}}
-        </td>
-      </tr>
-    </table>
-  </div>
+  <a class="btn btn-default" ui-sref=".play" ng-init="clicked=false"
+    ng-click="clicked=true" ng-show="clicked===false">
+    Play Some Trivia!
+  </a>
+
+  <div ng-show="clicked===true" ui-view></div>
 
 </div>
