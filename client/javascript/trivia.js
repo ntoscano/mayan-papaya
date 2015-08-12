@@ -7,12 +7,41 @@
 
     var obj = {};
 
+    obj.getCleanAnswer = function(answer) {
+      var str = answer, startItal, endItal;
+      while(str.indexOf('<i>') !== -1) {
+        startItal = str.indexOf('<i>');
+        str = str.slice(0, startItal) + str.slice(startItal + 3);
+      }
+      while(str.indexOf('</i>') !== -1) {
+        endItal = str.indexOf('</i>');
+        str = str.slice(0, endItal) + str.slice(endItal + 4);
+      }
+      return str;
+    };
+
+    obj.getClue = function(answer) {
+      var result = [];
+      _.each(answer, function(char) {
+
+      });
+      return result;
+    };
+
     obj.getQuestions = function() { // retrieves questions from backend
       return $http.get('/api/trivia').success(function(data) {
         // using Angular $http service to query our questions route
         // success cb executes when request returns
         // route returns a list of questions
         obj.questions = data;
+
+        //clean the italics from the answers
+        _.each(obj.questions, function(q) {
+          q.answer = obj.getCleanAnswer(q.answer);
+        });
+
+
+
       });
     };
 
@@ -51,7 +80,7 @@
     };
 
     //disable for testing
-    // $scope.getQuestions();
+    $scope.getQuestions();
 
 
 
