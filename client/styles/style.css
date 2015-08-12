@@ -63,6 +63,12 @@ body {
   line-height: 150%;
   color: #337ab7;
 }
+.play-trivia-answer-text, .play-trivia-answer-input {
+  letter-spacing: 1px;
+  font-size: 18px;
+  /*border:1px solid #999999;*/
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
 
 
 
