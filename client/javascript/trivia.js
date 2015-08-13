@@ -144,7 +144,15 @@
         $scope.nextLoc();
       }
     };
+
     $scope.updateUserData = function() {};
+
+    // $scope.time = 15;
+    // $scope.countdown = function() {
+    //   setInterval(function () {
+    //     $scope.time--;
+    //   }, 1000);
+    // }
 
   }]);
 
