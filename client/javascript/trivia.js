@@ -47,7 +47,7 @@
   }]);
 
 
-  app.controller('TriviaController', ['$scope', '$http', 'Questions', function($scope, $http, Questions) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', function($scope, $http, Questions, $timeout) {
 
     //sample trivia api response for chai test
     $scope.questions = [
@@ -147,12 +147,22 @@
 
     $scope.updateUserData = function() {};
 
-    // $scope.time = 15;
-    // $scope.countdown = function() {
-    //   setInterval(function () {
-    //     $scope.time--;
-    //   }, 1000);
-    // }
+    //Timer uses timeout function
+    //cancels a task associated with the promise    
+    $scope.counter = 100;
+    var stopped;
+    $scope.countdown = function() {
+      stopped = $timeout(function() {
+        $scope.counter--;
+        if ($scope.counter === 0) {
+          $timeout.cancel(stopped);
+          // go to end-game view
+        } else {
+          $scope.countdown();
+        }
+      }, 1000);
+    };
+
 
   }]);
 

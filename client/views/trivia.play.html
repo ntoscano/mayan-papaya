@@ -6,15 +6,9 @@
     ng-show="$index===navLoc">
 
     <div class="col-md-12 text-left">
-
-      <div class="row play-trivia-row">
-        <div class="col-md-4 text-muted">
-          <timer interval="1000" countdown="15">Time: {{countdown}}</timer>
-          <!-- <div>
-            <div>
-              <timer ng-attr-countdown="countdown" ng-attr-interval="interval">Timer: {{time}}</timer>
-            </div>
-          </div> -->
+      <div class="row play-trivia-row text-muted">
+        <!-- timer -->
+        <div class="col-md-4 text-muted" ng-bind="counter">
         </div>
         <div class="col-md-4 text-center text-muted">
           Score:<br>{{score}}
@@ -50,7 +44,6 @@
               class="form-control input-lg play-trivia-answer-input"
               placeholder="{{q.clue}}"
               ng-keypress="checkAnswer($event, q)"
-              ng-keypress="countdown()"
               autofocus>
             </input>
           </div>
