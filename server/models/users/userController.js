@@ -46,22 +46,18 @@ module.exports = {
     // check to see if user already exists
     findOne({username: username})
       .then(function(user) {
-        console.log('dsfsdfsdfsdf', user)
-        // if (user) {
-        //   res.statusCode = 403;
-        //   console.log('ifififififififififii')
-        //   res.json({error: 'Username taken'});
-        // } else {
+        if (user) {
+          res.statusCode = 403;
+          res.json({error: 'Username taken'});
+        } else {
           // make a new user if not one
           create = Q.nbind(User.create, User);
-          console.log('got here: else');
           newUser = {
             username: username,
             password: password
           };
-          console.log('got here: return', newUser, '~~~', create(newUser));
           return create(newUser);
-        // }
+        }
       })
       .then(function (user) {
         console.log('got here: then', user);
