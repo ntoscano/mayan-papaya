@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('TriviaWithFriends', ['ui.router', 'Navigation', 'Footer', 'Trivia', 'Profile', 'Home', 'User', 'Stats', 'Timer']); // need User dependency
+  var app = angular.module('TriviaWithFriends', ['ui.router', 'Navigation', 'Footer', 'Trivia', 'Profile', 'Home', 'User', 'Stats']); // need User dependency
 
   app.config ([
   '$stateProvider',
@@ -27,6 +27,11 @@
           .state('trivia.play', {
             url: '/play',
             templateUrl: 'views/trivia.play.html',
+            data: { publicallyAccessible: false }
+          })
+          .state('trivia.endgame', {
+            url: '/endgame',
+            templateUrl: 'views/trivia.endgame.html',
             data: { publicallyAccessible: false }
           })
 
