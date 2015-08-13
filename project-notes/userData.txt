@@ -1,0 +1,29 @@
+
+//this is a list of as much user data I could think of to store in the DB (HS)
+//please add to it if you think of anything else.
+
+
+TWF user data:
+
+  - username (string)
+  - password hash (string)
+  - user level (number)
+  - user title (string) [achieved by accumulating xp]
+  - total xp (number)
+  - xp to next level
+  - games played (number)
+  - average score per game (number)
+  - average score per question (number)
+  - best game score (number)
+  - best correct streak (number)
+  - total questions answered (number)
+  - questions answered right (number)
+  - questions answered wrong (number)
+  - most recent game stats:
+    - game score (number)
+    - xp earned (number)
+    - game time (number)
+    - total questions answered (number)
+    - questions answered right (number)
+    - questions answered wrong (number)
+    - best correct streak (number)
