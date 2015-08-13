@@ -29,9 +29,9 @@
             templateUrl: 'views/trivia.play.html',
             data: { publicallyAccessible: false }
           })
-          .state('trivia.endgame', {
-            url: '/endgame',
-            templateUrl: 'views/trivia.endgame.html',
+          .state('trivia.play.endgame', {
+            url: '/play.endgame',
+            templateUrl: 'views/trivia.play.endgame.html',
             data: { publicallyAccessible: false }
           })
 

@@ -5,7 +5,6 @@
   //factory to get and hold question data
   //also has methods for cleaning and augmenting question data
   app.factory('Questions', ['$http', function($http) {
-
     var obj = {};
 
     obj.getCleanAnswer = function(answer) {
@@ -114,6 +113,10 @@
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
       $scope.navLoc++;
+      if ($scope.navLoc === 10) {
+        // render endgame view
+        console.log('Done!');
+      }
     };
 
     //for getting trivia questions from the jService API
@@ -163,7 +166,24 @@
       }, 1000);
     };
 
+    // $scope.complete = false;
+    // $scope.doComplete = function() {
+    //   $scope.complete = true;
+    // }
 
   }]);
+
+  // For rendering end-game view
+  // app.directive('myPostRepeatDirective', function() {
+
+  //   return function(scope, element, attrs) {
+  //     if (scope.$last){
+  //       scope.$eval('doComplete()');
+  //     // iteration is complete, do whatever post-processing
+  //     // is necessary
+  //       console.log('Done!');
+  //     }
+  //   };
+  // });
 
 })();
