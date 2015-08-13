@@ -41,15 +41,17 @@ module.exports = {
         create,
         newUser;
 
+        console.log('~~~~~~~~~~~~~~~~~user: ', User.findOne);
     var findOne = Q.nbind(User.findOne, User);
-
     // check to see if user already exists
     findOne({username: username})
       .then(function(user) {
-        if (user) {
-          res.statusCode = 403;
-          res.json({error: 'Username taken'});
-        } else {
+        console.log('dsfsdfsdfsdf', user)
+        // if (user) {
+        //   res.statusCode = 403;
+        //   console.log('ifififififififififii')
+        //   res.json({error: 'Username taken'});
+        // } else {
           // make a new user if not one
           create = Q.nbind(User.create, User);
           console.log('got here: else');
@@ -59,10 +61,10 @@ module.exports = {
           };
           console.log('got here: return', newUser, '~~~', create(newUser));
           return create(newUser);
-        }
+        // }
       })
       .then(function (user) {
-        console.log('got here: then');
+        console.log('got here: then', user);
         // create token to send back for auth
         var token = jwt.encode(user, secret);
         res.json({token: token});
