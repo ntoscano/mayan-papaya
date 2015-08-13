@@ -1,29 +1,36 @@
+<div class="text-center" ng-controller="ProfileController">
+  <div class="row profile-info-wrapper">
 
-<div ng-controller="ProfileController" id='profile-view'>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
+      <div class="well well-sm">
+        <div class="row">
 
-  <div class="profile-info-wrapper">
+          <!-- Profile image -->
+          <div class="col-sm-6 col-md-4">
+            <img src="http://pre13.deviantart.net/76c9/th/pre/i/2014/140/d/d/warlord_by_rob_joseph-d7j1ifg.jpg" alt="" class="img-rounded img-responsive" />
+          </div>
 
-    <div class="row profile-name">
-      <div class="col-md-1 col-md-offset-4">Name</div>
-      <div class="col-md-3">{{user.name}}</div>
+          <!-- User info -->
+          <div class="col-sm-6 col-md-8">
+            <h3>{{user.username}}</h3>
+            <h5>{{user.name}}</h5>
+            <p>
+              <i class="glyphicon glyphicon-envelope"></i> {{user.email}}
+              <br/>
+              <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com"> Global level: {{user.level}}</a>
+              <br />
+            </div>
+          </div>
+
+        </div>
     </div>
 
-    <div class="row profile-username">
-      <div class="col-md-1 col-md-offset-4">Username</div>
-      <div class="col-md-3">{{user.username}}</div>
-    </div>
-
-    <div class="row profile-email">
-      <div class="col-md-1 col-md-offset-4">Email</div>
-      <div class="col-md-3">{{user.email}}</div>
-    </div>
-
-    <div class="row profile-level">
-      <div class="col-md-1 col-md-offset-4">Level</div>
-      <div class="col-md-3">{{user.level}}</div>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="stats-chart-view text-center">
+        <!-- nested view for profile info -->
+        <div ui-view></div>
+      </div>
     </div>
 
   </div>
-
-
 </div>
