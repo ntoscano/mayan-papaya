@@ -136,7 +136,6 @@
     $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
         var userAns = keyEvent.srcElement.value;
-        console.log(keyEvent.srcElement);
         if(userAns === question.answer) {
           $scope.score += question.value;
         } else {

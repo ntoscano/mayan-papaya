@@ -1,42 +1,33 @@
 <div class="text-center" ng-controller="ProfileController">
   <div class="row profile-info-wrapper">
+
     <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
       <div class="well well-sm">
         <div class="row">
+
+          <!-- Profile image -->
           <div class="col-sm-6 col-md-4">
             <img src="http://pre13.deviantart.net/76c9/th/pre/i/2014/140/d/d/warlord_by_rob_joseph-d7j1ifg.jpg" alt="" class="img-rounded img-responsive" />
           </div>
+
+          <!-- User info -->
           <div class="col-sm-6 col-md-8">
-            <h4>{{user.username}}</h4>
-            <cite title="Username">{{user.name}}</cite>
+            <h3>{{user.username}}</h3>
+            <h5>{{user.name}}</h5>
             <p>
               <i class="glyphicon glyphicon-envelope"></i> {{user.email}}
-              <br />
+              <br/>
               <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com"> Global level: {{user.level}}</a>
               <br />
-              <!-- Split button -->
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary">
-                  Categories</button>
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                  <span class="caret"></span><span class="sr-only">Social</span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Twitter</a></li>
-                  <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
-                  <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Github</a></li>
-                </ul>
-              </div>
             </div>
           </div>
+
         </div>
     </div>
 
     <div class="col-md-6 col-md-offset-3">
       <div class="stats-chart-view text-center">
-        <!-- the nested view for the stats -->
+        <!-- nested view for profile info -->
         <div ui-view></div>
       </div>
     </div>
