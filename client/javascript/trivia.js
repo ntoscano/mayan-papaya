@@ -146,21 +146,20 @@
         }
         $scope.nextLoc();
       }
-      $scope.finalScore = $scope.score;
+      $scope.finalScore = $scope.score || 0;
     };
 
     $scope.updateUserData = function() {};
 
     //Timer uses timeout function
     //cancels a task associated with the promise    
-    $scope.counter = 20;
+    $scope.counter = 100;
     $scope.countdown = function() {
       var stopped;
       stopped = $timeout(function() {
         $scope.counter--;
         if ($scope.counter === 0) {
           $timeout.cancel(stopped);
-          $scope.counter = 20; // resetting timer
           // go to end-game view
           $location.path("/trivia/endgame");
         } else {
