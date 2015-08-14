@@ -46,7 +46,7 @@
   }]);
 
 
-  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', function($scope, $http, Questions, $timeout) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', '$location', function($scope, $http, Questions, $timeout, $location) {
 
     //sample trivia api response for chai test
     $scope.questions = [
@@ -115,7 +115,7 @@
       $scope.navLoc++;
       if ($scope.navLoc === 10) {
         // render endgame view
-        console.log('Done!');
+        $location.path("/trivia/endgame");
       }
     };
 
@@ -152,7 +152,7 @@
 
     //Timer uses timeout function
     //cancels a task associated with the promise    
-    $scope.counter = 100;
+    $scope.counter = 3;
     var stopped;
     $scope.countdown = function() {
       stopped = $timeout(function() {
@@ -160,30 +160,13 @@
         if ($scope.counter === 0) {
           $timeout.cancel(stopped);
           // go to end-game view
+          $location.path("/trivia/endgame");
         } else {
           $scope.countdown();
         }
       }, 1000);
     };
 
-    // $scope.complete = false;
-    // $scope.doComplete = function() {
-    //   $scope.complete = true;
-    // }
-
   }]);
-
-  // For rendering end-game view
-  // app.directive('myPostRepeatDirective', function() {
-
-  //   return function(scope, element, attrs) {
-  //     if (scope.$last){
-  //       scope.$eval('doComplete()');
-  //     // iteration is complete, do whatever post-processing
-  //     // is necessary
-  //       console.log('Done!');
-  //     }
-  //   };
-  // });
 
 })();
