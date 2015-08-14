@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
-var apiKey = require('./server/api-config').apiKey;
 var app = express();
 
 require('./server/config/middleware.js')(app, express);
