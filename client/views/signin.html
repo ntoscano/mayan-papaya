@@ -1,27 +1,53 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="../styles/login.css" />
-<div class="form" ng-controller="UserController">
-  <div class="header">
-    <h2>Sign In</h2>
-  </div>
-  <div class="login">
-    <form action="">
-      <ul>
-        <li>
-          <span class="un"><i class="fa fa-user"></i></span><input type="text" required class="text" placeholder="User Name Or Email" ng-model="user.username"/>
-        </li>
-        <li>
-          <span class="un"><i class="fa fa-lock"></i></span><input type="password" required class="text" placeholder="User Password" ng-model="user.password"/>
-        </li>
-        <li>
-          <input type="submit" value="LOGIN" ng-click="signin()" class="btn">
-        </li>
-      </ul>
-    </form>
-  </div>
-  <br/>
-  <div class="sign">
-    <div class="need">Need new account ?</div>
-    <div class="up"><a href="/#/signup">Sign Up</a></div>
+<div ng-controller="UserController">
+  <div class="row">
+
+    <!-- wrapper column for signin -->
+    <div class="col-md-8 col-md-offset-2">
+      <div>
+        <h3>Sign In</h3>
+      </div>
+      <!-- name or email input -->
+      <div class="row">
+        <div class="col-md-4 signin-margin">
+          <input type="text"
+            class="form-control input-md"
+            required class="text"
+            placeholder="Username"
+            ng-model="user.username"/>
+        </div>
+      </div>
+      <!-- password input -->
+      <div class="row">
+        <div class="col-md-4 signin-margin">
+          <input type="password"
+            class="form-control input-md"
+            required class="text"
+            placeholder="Password"
+            ng-model="user.password"/>
+        </div>
+      </div>
+      <!-- signin button -->
+      <div class="row">
+        <div class="col-md-4 signin-margin">
+          <input type="submit"
+            class="btn btn-primary"
+            value="Submit"
+            ng-click="signin()"/>
+        </div>
+      </div>
+      <!-- new account option -->
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+          Need new account?
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <a href="/#/signup">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

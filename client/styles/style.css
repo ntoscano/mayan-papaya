@@ -14,10 +14,10 @@ body {
   margin-bottom: 60px;
 }
 
+/*index header css*/
 .twf-header {
   margin-bottom: 30px;
 }
-
 .header-title {
   margin-bottom: 20px;
 }
@@ -34,7 +34,6 @@ body {
 .stats-btn {
   padding: 30px 20px !important;
 }
-
 /*temp css for the d3 charts in stats view*/
 .stats-chart-view {
   border: 1px solid #ddd;
@@ -67,6 +66,11 @@ body {
   letter-spacing: 1px;
   font-size: 18px;
   font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+}
+
+/*/signin and /signout css*/
+.signin-margin, .signup-margin {
+  margin: 5px 0;
 }
 
 
