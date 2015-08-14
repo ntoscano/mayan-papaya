@@ -7,7 +7,7 @@ module.exports = function(app){
     unirest.get("http://jservice.io/api/random?count=10")
     .header("Accept", "application/json")
     .end(function (result) {
-      console.log(result.body);
+      triviaController.addQuestion(result);
       res.send(result.body);
     });
   });
@@ -22,4 +22,4 @@ module.exports = function(app){
   //     res.send(result.body);
   //   });
   // });
-}
+};
