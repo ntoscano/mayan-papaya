@@ -152,13 +152,14 @@
 
     //Timer uses timeout function
     //cancels a task associated with the promise    
-    $scope.counter = 100;
+    $scope.counter = 10;
     var stopped;
     $scope.countdown = function() {
       stopped = $timeout(function() {
         $scope.counter--;
         if ($scope.counter === 0) {
           $timeout.cancel(stopped);
+          $scope.counter = 10; // resetting timer
           // go to end-game view
           $location.path("/trivia/endgame");
         } else {

@@ -17,8 +17,8 @@
           <div class="row endgame-row">
             <div class="col-md-12">
               <div class="text-center">
-                <a class="btn btn-default text-center" ui-sref="trivia.play" ng-init="clicked=false"
-                  ng-click="clicked=true; countdown()" ng-show="clicked===false">
+                <a class="btn btn-default text-center" ui-sref="trivia.play"  ng-init="clicked=false"
+                  ng-click="clicked=!clicked; countdown()" ng-show="clicked===false">
                   <h7>Play again!</h7>
                 </a>
                 <div ng-show="clicked===true" ui-view></div>
