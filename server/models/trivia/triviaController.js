@@ -1,4 +1,4 @@
-var trivia = require('./triviaModel.js');
+var Trivia = require('./triviaModel.js');
 var Q = require('q');
 
 module.exports = {
@@ -13,7 +13,32 @@ module.exports = {
       }else{
         console.log('incorrect');
       }
-    })
+    });
+  },
+
+  addQuestion: function(result){
+    var questions = result.body;
+    for(var i = 0; i < questions.length; i++){
+      var answer = questions[i].answer;
+      var id = questions[i].id;
+      var create, newQuestion;
+
+      var findOne = Q.bind(Trivia.findOne, Trivia);
+
+      findOne({id: id})
+        .then(function(question){
+          if(!question){
+            create = Q.bind(Trivia.create, Trivia);
+            newQuestion = {
+              id : id, 
+              answer: answer
+            };
+          }
+          console.log('success');
+          create(id);
+        });
+
+    }
   }
 
-}
+};
