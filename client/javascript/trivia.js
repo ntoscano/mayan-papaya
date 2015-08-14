@@ -135,9 +135,7 @@
     $scope.score = 0;
     //for handling user answers to trivia
     $scope.checkAnswer = function(keyEvent, question) {
-      var count = 0;
       if(keyEvent.keyCode === 13) {
-        count++;
         var userAns = keyEvent.srcElement.value;
         if(userAns === question.answer) {
           $scope.score += question.value;
@@ -146,15 +144,10 @@
         else {
           $scope.score -= Math.floor(question.value / 10);
         }
-        if (count === 10) {
-          // set the final score
-          $scope.finalScore = $scope.score;
-          // stop the timer
-        }
         $scope.nextLoc();
       }
+      $scope.finalScore = $scope.score;
     };
-    $scope.finalScore = $scope.score;
 
     $scope.updateUserData = function() {};
 
