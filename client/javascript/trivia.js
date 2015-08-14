@@ -141,9 +141,9 @@
           $scope.score += question.value;
         }
         // The game is super hard and gives questions of arbitrary point values, so to be fair we probably shouldn't deduct 10% for wrong answers.
-        else {
-          $scope.score -= Math.floor(question.value / 10);
-        }
+        // else {
+        //   $scope.score -= Math.floor(question.value / 10);
+        // }
         $scope.nextLoc();
       }
       $scope.finalScore = $scope.score || 0;
