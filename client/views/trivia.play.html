@@ -6,10 +6,9 @@
     ng-show="$index===navLoc">
 
     <div class="col-md-12 text-left">
-
-      <div class="row play-trivia-row">
-        <div class="col-md-4 text-muted">
-          Timeleft: {{}}
+      <div class="row play-trivia-row text-muted">
+        <!-- timer -->
+        <div class="col-md-4 text-muted" ng-bind="counter">
         </div>
         <div class="col-md-4 text-center text-muted">
           Score:<br>{{score}}

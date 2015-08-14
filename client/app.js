@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('TriviaWithFriends', ['ui.router', 'Navigation', 'Footer', 'Trivia', 'Profile', 'Home', 'User', 'Stats']); // need User dependency
+  var app = angular.module('TriviaWithFriends', ['ui.router', 'Navigation', 'Footer', 'Trivia', 'Profile', 'Home', 'User', 'Stats', 'Timer']); // need User dependency
 
   app.config ([
   '$stateProvider',

@@ -20,6 +20,7 @@ module.exports = function(config) {
       'client/lib/angular-route/angular-route.js',
       'client/lib/angular-mocks/angular-mocks.js',
       'client/lib/underscore/underscore-min.js',
+      // 'client/lib/angular-timer'
 
       // assertion library
       'node_modules/chai/chai.js',
