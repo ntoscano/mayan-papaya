@@ -1,8 +1,8 @@
 (function() {
 
-  var app = angular.module('Navigation',[]);
+  var app = angular.module('Navigation',['User']);
 
-  app.controller('NavigationController', ['$scope', '$location', '$state', function($scope, $location, $state) {
+  app.controller('NavigationController', ['$scope', '$location', '$state', 'UserFactory', function($scope, $location, $state, UserFactory) {
 
     //for changing active nav tab
     $scope.getClass = function(stateName) {
@@ -21,6 +21,8 @@
         return true;
       }
     };
+
+    $scope.logout = UserFactory.signout;
 
   }]);
 
