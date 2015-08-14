@@ -6,8 +6,7 @@
         <!-- timer -->
         <!-- <div class="col-md-4 text-muted" ng-bind="counter"> -->
         <div class="col-md-12 text-center">
-          <h1>Your final score is {{score}}</h1>
-          <h4> Will you have another hand at it? </h4>
+          <h1>Your final score is {{finalScore}}</h1>
         </div>
       </div>
 
@@ -17,9 +16,9 @@
           <div class="row endgame-row">
             <div class="col-md-12">
               <div class="text-center">
-                <a class="btn btn-default text-center" ui-sref="trivia.play"  ng-init="clicked=false"
-                  ng-click="clicked=!clicked; countdown()" ng-show="clicked===false">
-                  <h7>Play again!</h7>
+                <a class="btn btn-default text-center" ui-sref="trivia.play" ui-sref-opts="{reload: true}" ng-init="clicked=false"
+                  ng-click="clicked=!clicked" ng-show="clicked===false">
+                  <h7>Will you try again?</h7>
                 </a>
                 <div ng-show="clicked===true" ui-view></div>
               </div>
