@@ -1,10 +1,9 @@
 <div class="text-center" ng-controller="TriviaController">
 
-  <a class="btn btn-default" ui-sref=".play" ng-init="clicked=false"
-    ng-click="clicked=true; countdown()" ng-show="clicked===false">
-    Play Some Trivia!
+  <a class="button green" ui-sref=".play" ng-init="clicked=false"
+    ng-click="clicked=!clicked; countdown()" ng-show="clicked===false">
+    Play!
   </a>
 
   <div ng-show="clicked===true" ui-view></div>
-
 </div>

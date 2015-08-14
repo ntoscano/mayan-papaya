@@ -1,7 +1,4 @@
-
-<!-- view for the playing the game! -->
-<div ng-repeat="q in questions">
-
+<div class="q" ng-repeat="q in questions">
   <div class="play-trivia-view col-md-6 col-md-offset-3"
     ng-show="$index===navLoc">
 
@@ -14,7 +11,7 @@
           Score:<br>{{score}}
         </div>
         <div class="col-md-4 text-right text-muted">
-          Lives: {{}}
+          Lives: {{lives}}
         </div>
       </div>
 
@@ -38,7 +35,6 @@
 
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-
           <div class="row play-trivia-row">
             <input type='text'
               class="form-control input-lg play-trivia-answer-input"
@@ -47,12 +43,16 @@
               autofocus>
             </input>
           </div>
-
         </div>
       </div>
-
-    </div>
+      
+      <!-- <div class="text-center">
+        <a class="btn btn-default" ui-sref=".endgame" ng-init="clicked=false"
+          ng-click="clicked=true" ng-show="clicked===false"> End game
+        </a>
+        <div ng-show="clicked===true" ui-view></div>
+      </div>
+    </div> -->
 
   </div>
-
 </div>

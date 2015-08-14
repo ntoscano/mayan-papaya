@@ -5,7 +5,6 @@
   //factory to get and hold question data
   //also has methods for cleaning and augmenting question data
   app.factory('Questions', ['$http', function($http) {
-
     var obj = {};
 
     obj.getCleanAnswer = function(answer) {
@@ -47,7 +46,7 @@
   }]);
 
 
-  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', function($scope, $http, Questions, $timeout) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', '$location', function($scope, $http, Questions, $timeout, $location) {
 
     //sample trivia api response for chai test
     $scope.questions = [
@@ -114,6 +113,9 @@
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
       $scope.navLoc++;
+      if ($scope.navLoc === 10) {
+        $location.path("/trivia/endgame"); // render endgame view
+      }
     };
 
     //for getting trivia questions from the jService API
@@ -126,43 +128,53 @@
             q.answer = Questions.getCleanAnswer(q.answer);
             q.clue = Questions.getClue(q.answer);
           });
-          // console.log($scope.questions);
         });
     };
     $scope.getQuestions();
 
-    //for handling user answers to trivia
     $scope.score = 0;
+    //for handling user answers to trivia
     $scope.checkAnswer = function(keyEvent, question) {
+      var count = 0;
       if(keyEvent.keyCode === 13) {
+        count++;
         var userAns = keyEvent.srcElement.value;
         if(userAns === question.answer) {
           $scope.score += question.value;
-        } else {
+        }
+        // The game is super hard and gives questions of arbitrary point values, so to be fair we probably shouldn't deduct 10% for wrong answers.
+        else {
           $scope.score -= Math.floor(question.value / 10);
+        }
+        if (count === 10) {
+          // set the final score
+          $scope.finalScore = $scope.score;
+          // stop the timer
         }
         $scope.nextLoc();
       }
     };
+    $scope.finalScore = $scope.score;
 
     $scope.updateUserData = function() {};
 
     //Timer uses timeout function
     //cancels a task associated with the promise    
-    $scope.counter = 100;
-    var stopped;
+    $scope.counter = 20;
     $scope.countdown = function() {
+      var stopped;
       stopped = $timeout(function() {
         $scope.counter--;
         if ($scope.counter === 0) {
           $timeout.cancel(stopped);
+          $scope.counter = 20; // resetting timer
           // go to end-game view
+          $location.path("/trivia/endgame");
         } else {
           $scope.countdown();
         }
       }, 1000);
     };
-
 
   }]);
 
