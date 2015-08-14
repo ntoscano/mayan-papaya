@@ -9,11 +9,11 @@
   function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $stateProvider
-      .state('home', {
-        url: '/home',
-        templateUrl: 'views/home.html',
-        data: { publicallyAccessible: false }
-      })
+      // .state('home', {
+      //   url: '/home',
+      //   templateUrl: 'views/home.html',
+      //   data: { publicallyAccessible: false }
+      // })
       .state('trivia', {
         url: '/trivia',
         templateUrl: 'views/trivia.html',
@@ -66,7 +66,7 @@
         templateUrl: 'views/signin.html',
         data: { publicallyAccessible: true }
       });
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('trivia');
     $httpProvider.interceptors.push('AttachTokens');
 
   }]);
