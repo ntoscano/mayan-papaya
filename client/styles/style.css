@@ -72,5 +72,6 @@ body {
 .signin-margin, .signup-margin {
   margin: 5px 0;
 }
-
-
+.endgame-row {
+  margin: 60px 0;
+}

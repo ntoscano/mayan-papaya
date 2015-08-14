@@ -152,7 +152,7 @@
 
     //Timer uses timeout function
     //cancels a task associated with the promise    
-    $scope.counter = 3;
+    $scope.counter = 100;
     var stopped;
     $scope.countdown = function() {
       stopped = $timeout(function() {
