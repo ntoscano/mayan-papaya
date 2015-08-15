@@ -6,7 +6,7 @@ var secret = 'This really shouldn\'t be in the git repo. Replace with a secure s
 
 module.exports = {
 
-  updateScore: function(req, res){
+  updateUser: function(req, res){
     var username = req.body.username;
     var score = req.body.score;
     var query = {username: username};

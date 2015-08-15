@@ -34,10 +34,6 @@ var UserSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  wonLastGame: {
-    type: Boolean,
-    default: false
-  },
   questionsAnswered: {
     type: Number,
     default: 0
@@ -52,10 +48,6 @@ var UserSchema = new mongoose.Schema({
       default: 0
     },
     xpEarned: {
-      type: Number,
-      default: 0
-    },
-    gameTime: {
       type: Number,
       default: 0
     },
