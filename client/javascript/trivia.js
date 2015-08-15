@@ -141,26 +141,25 @@
           $scope.score += question.value;
         }
         // The game is super hard and gives questions of arbitrary point values, so to be fair we probably shouldn't deduct 10% for wrong answers.
-        else {
-          $scope.score -= Math.floor(question.value / 10);
-        }
+        // else {
+        //   $scope.score -= Math.floor(question.value / 10);
+        // }
         $scope.nextLoc();
       }
-      $scope.finalScore = $scope.score;
+      $scope.finalScore = $scope.score || 0;
     };
 
     $scope.updateUserData = function() {};
 
     //Timer uses timeout function
     //cancels a task associated with the promise    
-    $scope.counter = 20;
+    $scope.counter = 100;
     $scope.countdown = function() {
       var stopped;
       stopped = $timeout(function() {
         $scope.counter--;
         if ($scope.counter === 0) {
           $timeout.cancel(stopped);
-          $scope.counter = 20; // resetting timer
           // go to end-game view
           $location.path("/trivia/endgame");
         } else {

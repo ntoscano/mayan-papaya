@@ -8,7 +8,6 @@
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="lib/angular-timer"></script>
     <script src="lib/underscore/underscore-min.js"></script>
 
     <script src="app.js"></script>
@@ -17,7 +16,7 @@
     <script src="javascript/trivia.js"></script>
     <script src="javascript/profile.js"></script>
     <script src="javascript/stats.js"></script>
-    <script src="javascript/home.js"></script>
+    <!-- <script src="javascript/home.js"></script> -->
     <script src="javascript/user.js"></script>
   </head>
 
@@ -32,10 +31,10 @@
         <ul class="nav nav-tabs"
           ng-controller="NavigationController"
           ng-show="show()">
-          <li ng-class="getClass('home')" role="presentation"><a href="/#/home">Home</a></li>
+          <!-- <li ng-class="getClass('home')" role="presentation"><a href="/#/home">Home</a></li> -->
+          <li ng-class="getClass('trivia')" role="presentation"><a href="/#/trivia">Trivia</a></li>
           <li ng-class="getClass('profile')" role="presentation"><a href="/#/profile">Profile</a></li>
           <li ng-class="getClass('stats')" role="presentation"><a href="/#/stats">Stats</a></li>
-          <li ng-class="getClass('trivia')" role="presentation"><a href="/#/trivia">Trivia</a></li>
           <li class="pull-right" role="presentation"><a ng-click="logout();">Logout</a></li>
         </ul>
       </div>
