@@ -3,7 +3,7 @@
   var app = angular.module('User',[]);
 
 
-  app.factory('UserFactory', function($http, $location, $window) {
+  app.factory('UserFactory', ['$http', '$location', '$window', function($http, $location, $window) {
 
     var obj = {}; // export object so you can later add new objects and methods to our factories
 
@@ -28,7 +28,6 @@
     };
 
     obj.isAuth = function () {
-      console.log($window.localStorage.getItem('com.TriviaWithFriends'));
       return !!$window.localStorage.getItem('com.TriviaWithFriends');
     };
 
@@ -37,15 +36,17 @@
       $location.path('/signin');
     };
 
-
+  
     return obj;
-  });
+  }]);
 
-  app.controller('UserController', ['$scope', '$window', '$location', 'UserFactory', function($scope, $window, $location, UserFactory) {
+  app.controller('UserController', ['$scope', '$window', '$location', '$rootScope', 'UserFactory', function($scope, $window, $location, $rootScope, UserFactory) {
     $scope.test = 'test';
     $scope.user = {};
+    $rootScope.username = $scope.user.username;
     $scope.signin = function () {
-     UserFactory.signin($scope.user)
+      $rootScope.username = $scope.user.username;
+      UserFactory.signin($scope.user)
        .then(function (token) {
          $window.localStorage.setItem('com.TriviaWithFriends', token);
          $location.path('/home');
@@ -55,7 +56,8 @@
        });
     };
     $scope.signup = function () {
-     UserFactory.signup($scope.user)
+      $rootScope.username = $scope.user.username;
+      UserFactory.signup($scope.user)
        .then(function (token) {
          $window.localStorage.setItem('com.TriviaWithFriends', token);
          $location.path('/home');

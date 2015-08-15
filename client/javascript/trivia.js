@@ -42,11 +42,18 @@
       });
     };
 
+    obj.sendScore = function(user){
+      return $http.put('/api/users', {
+        username: user.username,
+        score: user.score
+      });//TODO: update view based on respose
+    };
+
     return obj;
   }]);
 
 
-  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', '$location', function($scope, $http, Questions, $timeout, $location) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', '$location', '$rootScope', function($scope, $http, Questions, $timeout, $location, $rootScope) {
 
     //sample trivia api response for chai test
     $scope.questions = [
@@ -109,11 +116,16 @@
       }
     ];
 
+    $scope.sendScore = Questions.sendScore;
     //for question navigation
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
       $scope.navLoc++;
       if ($scope.navLoc === 10) {
+        $scope.sendScore({
+          username: $rootScope.username,
+          score: $scope.score
+        });
         $location.path("/trivia/endgame"); // render endgame view
       }
     };
@@ -133,6 +145,7 @@
     $scope.getQuestions();
 
     $scope.score = 0;
+    $rootScope.score = $scope.score;
     //for handling user answers to trivia
     $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
