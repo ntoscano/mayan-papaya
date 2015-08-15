@@ -58,7 +58,7 @@ module.exports = {
         password  = req.body.password,
         create,
         newUser;
-        
+
     var findOne = Q.nbind(User.findOne, User);
     // check to see if user already exists
     findOne({username: username})
@@ -115,6 +115,24 @@ module.exports = {
           res.json({error: 'Server error'});
         });
     }
+  },
+
+  getUserData: function(req, res) {
+    console.log(req.body);
+    var username = req.body.username;
+    var findUser = Q.nbind(User.findOne, User);
+
+    console.log('username received: ' + username);
+
+    if(!username) {
+      res.sendStatus(401);
+    }
+
+    findUser({username: username})
+      .then(function(user) {
+        console.log(user);
+        res.json(JSON.stringify(user));
+      });
   }
 };
 

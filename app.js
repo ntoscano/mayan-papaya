@@ -30,38 +30,6 @@ if (!module.parent) {
   });
 }
 
-//the first trivia api, the returned questions are pretty bad, only virtue is multiple choice
-//not using this one atm.
-// app.get('/api/questions', function(req, res) {
-//   unirest.get("https://pareshchouhan-trivia-v1.p.mashape.com/v1/getRandomQuestion")
-//   .header("X-Mashape-Key", apiKey)
-//   .header("Accept", "application/json")
-//   .end(function (result) {
-//     res.send(result.body);
-//   });
-// });
-
-
-//alternate api (better imo)
-//includes a point value for each question which
-// app.get('/api/trivia', function(req, res) {
-//   unirest.get("http://jservice.io/api/random?count=10")
-//   .header("Accept", "application/json")
-//   .end(function (result) {
-//     console.log(result.body);
-//     res.send(result.body);
-//   });
-// });
-
-// //alternate api categories request
-// app.get('/api/trivia-categories', function(req, res) {
-//   unirest.get("http://jservice.io/api/categories?count=10")
-//   .header("Accept", "application/json")
-//   .end(function (result) {
-//     res.send(result.body);
-//   });
-// });
-
 module.exports = app;
 
 
