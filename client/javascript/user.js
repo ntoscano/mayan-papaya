@@ -28,15 +28,17 @@
     };
 
     obj.isAuth = function () {
+      // console.log($window.localStorage.getItem('com.TriviaWithFriends'));
       return !!$window.localStorage.getItem('com.TriviaWithFriends');
     };
 
     obj.signout = function () {
+      obj.currentUser = null;
       $window.localStorage.removeItem('com.TriviaWithFriends');
+      $window.localStorage.removeItem('com.TriviaWithFriends.username');
       $location.path('/signin');
     };
 
-  
     return obj;
   }]);
 
@@ -47,24 +49,27 @@
     $scope.signin = function () {
       $rootScope.username = $scope.user.username;
       UserFactory.signin($scope.user)
-       .then(function (token) {
-         $window.localStorage.setItem('com.TriviaWithFriends', token);
+        .then(function (token) {
+          $window.localStorage.setItem('com.TriviaWithFriends', token);
+          $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
          $location.path('/home');
        })
        .catch(function (error) {
-         console.error(error);
-       });
+          console.error(error);
+        });
     };
+
     $scope.signup = function () {
       $rootScope.username = $scope.user.username;
       UserFactory.signup($scope.user)
-       .then(function (token) {
-         $window.localStorage.setItem('com.TriviaWithFriends', token);
-         $location.path('/home');
-       })
-       .catch(function (error) {
-         console.error(error);
-       });
+        .then(function (token) {
+          $window.localStorage.setItem('com.TriviaWithFriends', token);
+          $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
+          $location.path('/home');
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     };
 
   }]);

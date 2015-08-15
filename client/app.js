@@ -71,7 +71,8 @@
 
   }]);
 
-  app.factory('AttachTokens', function ($window) {
+
+  app.factory('AttachTokens', function($window) {
     // this is an $httpInterceptor
     // its job is to stop all out going request
     // then look in local storage and find the user's token

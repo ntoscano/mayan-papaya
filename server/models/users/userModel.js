@@ -9,16 +9,64 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
   password: {
     type: String,
     required: true
   },
   salt: String,
-
-  score: {
+  userLevel: {
     type: Number,
-    required: true
+    default: 1
+  },
+  totalXp: {
+    type: Number,
+    default: 0
+  },
+  gamesPlayed: {
+    type: Number,
+    default: 0
+  },
+  bestGameScore: {
+    type: Number,
+    default: 0
+  },
+  bestCorrectStreak: {
+    type: Number,
+    default: 0
+  },
+  wonLastGame: {
+    type: Boolean,
+    default: false
+  },
+  questionsAnswered: {
+    type: Number,
+    default: 0
+  },
+  questionsAnsweredCorrect: {
+    type: Number,
+    default: 0
+  },
+  mostRecentGame: {
+    gameScore: {
+      type: Number,
+      default: 0
+    },
+    xpEarned: {
+      type: Number,
+      default: 0
+    },
+    gameTime: {
+      type: Number,
+      default: 0
+    },
+    questionsAnswered: {
+      type: Number,
+      default: 0
+    },
+    questionsAnsweredCorrect: {
+      type: Number,
+      default: 0
+    }
   }
 });
 
