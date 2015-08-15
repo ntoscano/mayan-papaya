@@ -5,6 +5,24 @@ var User = require('./userModel.js'),
 var secret = 'This really shouldn\'t be in the git repo. Replace with a secure secret eventually.';
 
 module.exports = {
+
+  updateScore: function(req, res){
+    var username = req.body.username;
+    var score = req.body.score;
+    var query = {username: username};
+    var oldScore;
+    var findUser = Q.nbind(User.findOne, User);
+    findUser({username: username})
+      .then(function(user){
+        oldScore = user.score;
+      }).then(function(){
+        User.findOneAndUpdate(query, { score : oldScore + score}, function(arg){
+          //null
+        });
+      });
+    res.statusCode(201);
+  },
+
   signin: function (req, res) {
     var username = req.body.username,
         password = req.body.password;
@@ -53,7 +71,8 @@ module.exports = {
           create = Q.nbind(User.create, User);
           newUser = {
             username: username,
-            password: password
+            password: password,
+            score: 0
           };
           return create(newUser);
         }
