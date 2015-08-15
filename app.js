@@ -5,7 +5,7 @@ var app = express();
 
 require('./server/config/middleware.js')(app, express);
 
-mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/TriviaWithFriends';
+mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/TriviaWithFriends';
 
 mongoose.connect(mongoURI);
 
@@ -20,7 +20,9 @@ db.once('open', function (callback) {
 // only run server if app.js was run directly (rather than being
 // imported as a module)
 if (!module.parent) {
-  var server = app.listen(3000, function () {
+  var port = process.env.PORT || 3000;
+
+  var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
 
