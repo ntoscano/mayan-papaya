@@ -23,7 +23,7 @@ describe('ProfileController', function() {
 
   // checking for test is just a test to test the tests
   // we'll probably remove eventually
-  it('should have a name property on the $scope.user', function() {
-    expect($scope.user.name).to.be.a('string');
+  it('should have a username property on the $scope.user', function() {
+    expect($scope.user.username).to.be.a('string');
   });
 });

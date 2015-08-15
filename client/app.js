@@ -71,11 +71,6 @@
 
   }]);
 
-  app.factory('CurrentUser', function() {
-    //to hold the current user
-    var obj = {};
-    return obj;
-  });
 
   app.factory('AttachTokens', function($window) {
     // this is an $httpInterceptor

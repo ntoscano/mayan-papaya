@@ -8,16 +8,13 @@
     var obj = {}; // export object so you can later add new objects and methods to our factories
 
     obj.getUsername = function() {
-      var username = $window.localStorage.getItem('com.TriviaWithFriends.username');
-      return username;
+      return $window.localStorage.getItem('com.TriviaWithFriends.username');
     };
 
     obj.getUserData = function (username) {
-      // console.log('getting username: ' + username + " from DB");
       return $http.post('/api/users/profile', {
         username: username
-      })
-      .then(function (res) {
+      }).then(function (res) {
         return res.data;
       });
     };
@@ -26,9 +23,9 @@
   });
 
 
-  app.controller('ProfileController', ['$scope', 'ProfileFactory', 'UserFactory', 'CurrentUser', function($scope, ProfileFactory, UserFactory, CurrentUser) {
+  app.controller('ProfileController', ['$scope', 'ProfileFactory', function($scope, ProfileFactory) {
 
-    //sample user data from DB
+    //sample user data from DB, not used exept for example
     $scope.user = {
       "_id": "55ce9311dda321437709f35c",
       "salt": "$2a$10$gLPRaKFp3JG6J2M\/VOQ.uu",
@@ -50,11 +47,10 @@
       "gamesPlayed": 0,
       "totalXp": 0,
       "userLevel": 1
-    }
+    };
 
     ProfileFactory.getUserData(ProfileFactory.getUsername())
       .then(function(data) {
-        console.log("profile factory invoked, user data: ", data);
         $scope.user = JSON.parse(data);
       });
 
