@@ -35,6 +35,7 @@
     obj.signout = function () {
       obj.currentUser = null;
       $window.localStorage.removeItem('com.TriviaWithFriends');
+      $window.localStorage.removeItem('com.TriviaWithFriends.username');
       $location.path('/signin');
     };
 
@@ -63,6 +64,7 @@
       UserFactory.signup($scope.user)
         .then(function (token) {
           $window.localStorage.setItem('com.TriviaWithFriends', token);
+          $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
           $location.path('/home');
         })
         .catch(function (error) {

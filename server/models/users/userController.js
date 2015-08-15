@@ -105,9 +105,9 @@ module.exports = {
       findUser({username: user.username})
         .then(function (foundUser) {
           if (foundUser) {
-            res.send(200);
+            res.sendStatus(200);
           } else {
-            res.send(401);
+            res.sendStatus(401);
           }
         })
         .fail(function (error) {
@@ -121,13 +121,10 @@ module.exports = {
     console.log(req.body);
     var username = req.body.username;
     var findUser = Q.nbind(User.findOne, User);
-
-    console.log('username received: ' + username);
-
+    // console.log('username received: ' + username);
     if(!username) {
       res.sendStatus(401);
     }
-
     findUser({username: username})
       .then(function(user) {
         console.log(user);

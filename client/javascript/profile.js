@@ -9,13 +9,12 @@
 
     obj.getUsername = function() {
       var username = $window.localStorage.getItem('com.TriviaWithFriends.username');
-      console.log(username);
       return username;
     };
 
     obj.getUserData = function (username) {
-      console.log('getting username: ' + username + "from DB");
-      return $http.get('/api/users/profile', {
+      // console.log('getting username: ' + username + " from DB");
+      return $http.post('/api/users/profile', {
         username: username
       })
       .then(function (res) {
