@@ -42,7 +42,7 @@
       });
     };
 
-    obj.sendScore = function(user){
+    obj.updateUser = function(user){
       return $http.put('/api/users', {
         username: user.username,
         score: user.score
@@ -116,15 +116,23 @@
       }
     ];
 
-    $scope.sendScore = Questions.sendScore;
+    $scope.updateUser = Questions.updateUser;
+    $scope.answered = 0;
+    $scope.correct = 0;
+    $scope.correctStreak = 0;
+    $scope.currentStreak = 0;
     //for question navigation
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
       $scope.navLoc++;
       if ($scope.navLoc === 10) {
-        $scope.sendScore({
+        $scope.updateUser({
           username: $rootScope.username,
-          score: $scope.score
+          score: $scope.score,
+          correct: $scope.correct,
+          correctStreak: $scope.correctStreak,
+          answered: $scope.answered
+
         });
         $location.path("/trivia/endgame"); // render endgame view
       }
@@ -148,10 +156,18 @@
     $rootScope.score = $scope.score;
     //for handling user answers to trivia
     $scope.checkAnswer = function(keyEvent, question) {
+      $scope.answered++;
       if(keyEvent.keyCode === 13) {
         var userAns = keyEvent.srcElement.value;
         if(userAns === question.answer) {
+          $scope.correct++;
+          $scope.currentStreak++;
           $scope.score += question.value;
+        }else{
+          $scope.currentStreak = 0;
+        }
+        if($scope.currentStreak > $scope.correctStreak){
+          $scope.correctStreak = $scope.currentStreak;
         }
         // The game is super hard and gives questions of arbitrary point values, so to be fair we probably shouldn't deduct 10% for wrong answers.
         // else {
@@ -159,10 +175,7 @@
         // }
         $scope.nextLoc();
       }
-      $scope.finalScore = $scope.score || 0;
     };
-
-    $scope.updateUserData = function() {};
 
     //Timer uses timeout function
     //cancels a task associated with the promise    

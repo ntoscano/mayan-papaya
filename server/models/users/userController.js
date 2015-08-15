@@ -9,14 +9,48 @@ module.exports = {
   updateUser: function(req, res){
     var username = req.body.username;
     var score = req.body.score;
+    var correct = req.body.correct;
+    var correctStreak = req.body.correctStreak;
+    var answered = req.body.answered;
     var query = {username: username};
     var oldScore;
+    var oldGames;
+    var bestGameScore;
+    var bestCorrectStreak;
+    var questionsAnswered;
+    var questionsAnsweredCorrect;
     var findUser = Q.nbind(User.findOne, User);
     findUser({username: username})
       .then(function(user){
-        oldScore = user.score;
+        console.log('~~~~~', user);
+        oldScore = user.totalXp;
+        oldGames = user.gamesPlayed;
+        questionsAnswered = user.questionsAnswered + answered;
+        questionsAnsweredCorrect = user.questionsAnsweredCorrect + correct;
+        if(user.bestGameScore > score){
+          bestGameScore = score;
+        }else{
+          bestGameScore = user.bestGameScore;
+        }
+        if(user.bestCorrectStreak > correctStreak){
+          bestCorrectStreak = user.bestCorrectStreak;
+        }else{
+          bestCorrectStreak = correctStreak;
+        }
       }).then(function(){
-        User.findOneAndUpdate(query, { score : oldScore + score}, function(arg){
+        User.findOneAndUpdate(query, { 
+          totalXp: oldScore + score,
+          gamesPlayed: oldGames + 1,
+          bestGameScore: bestGameScore,
+          bestCorrectStreak: bestCorrectStreak,
+          questionsAnswered: questionsAnswered,
+          questionsAnsweredCorrect: questionsAnsweredCorrect,
+          mostRecentGame: {
+            xpEarned: score,
+            questionsAnswered: answered,
+            questionsAnsweredCorrect: correct
+          }
+        }, function(arg){
           //null
         });
       });

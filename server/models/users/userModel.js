@@ -43,10 +43,6 @@ var UserSchema = new mongoose.Schema({
     default: 0
   },
   mostRecentGame: {
-    gameScore: {
-      type: Number,
-      default: 0
-    },
     xpEarned: {
       type: Number,
       default: 0
