@@ -25,7 +25,7 @@
 
   app.controller('ProfileController', ['$scope', 'ProfileFactory', function($scope, ProfileFactory) {
 
-    //sample user data from DB, not used exept for example
+    //sample user data from DB, not used except for example
     $scope.user = {
       "_id": "55ce9311dda321437709f35c",
       "salt": "$2a$10$gLPRaKFp3JG6J2M\/VOQ.uu",
