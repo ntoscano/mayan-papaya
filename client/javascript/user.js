@@ -52,7 +52,7 @@
           $window.localStorage.setItem('com.TriviaWithFriends', token);
           $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
           $rootScope.username = $scope.user.username;
-         $location.path('/home');
+         $location.path('/profile');
        })
        .catch(function (error) {
           console.error(error);
@@ -66,7 +66,7 @@
           $window.localStorage.setItem('com.TriviaWithFriends', token);
           $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
           $rootScope.username = $scope.user.username;
-          $location.path('/home');
+          $location.path('/profile');
         })
         .catch(function (error) {
           console.error(error);

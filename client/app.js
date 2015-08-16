@@ -66,7 +66,7 @@
         templateUrl: 'views/signin.html',
         data: { publicallyAccessible: true }
       });
-    $urlRouterProvider.otherwise('trivia');
+    $urlRouterProvider.otherwise('profile');
     $httpProvider.interceptors.push('AttachTokens');
 
   }]);

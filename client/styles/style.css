@@ -4,69 +4,42 @@
   /*border: 1px dotted green;*/
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-
 /*index header css*/
 .twf-header {
   margin-bottom: 30px;
 }
 .header-title {
-  margin-bottom: 20px;
+  margin: 30px 0;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
-}
-
+/*stats css*/
 .stats-btn {
   padding: 30px 20px !important;
 }
-/*temp css for the d3 charts in stats view*/
 .stats-chart-view {
-  border: 1px solid #ddd;
-  border-radius: 4px;
   height: 400px;
 }
 
 /*/trivia/play css*/
 .play-trivia-view {
   padding: 20px 0;
-  border: 1px solid #ddd;
   border-radius: 4px;
 }
-
+.play-trivia-btn {
+  font-size: 36px;
+  padding: 24px 0;
+}
 .play-trivia-row {
   margin: 15px 0;
 }
-
-.play-trivia-question-banner {
-  padding: 10px 0;
-  border-top: 1px solid #CCC;
-  border-bottom: 1px solid #CCC;
-  background-color: #f5f5f5;
+.play-trivia-question-panel {
+  box-shadow: none;
 }
-
 .play-trivia-question-txt {
-  height: 80px;
-  font-size: 18px;
   line-height: 150%;
-  color: #337ab7;
+  margin: 0;
 }
-
-.play-trivia-answer-text, .play-trivia-answer-input {
+.play-trivia-answer-input {
   letter-spacing: 1px;
   font-size: 18px;
   font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
@@ -81,29 +54,22 @@ body {
   margin: 60px 0;
 }
 
-.button {
-  position: relative;
-  padding: 20px 80px;
-  margin: 0px 10px 10px 0px;
-  float: center;
-  border-radius: 10px;
-  font-family: 'Helvetica';
-  font-size: 25px;
-  color: #FFF;
-  text-decoration: none;
-}
-
-.green {
-  background-color: #82BF56;
-  border-bottom: 5px solid #669644;
-}
-
 /*profile css*/
 .profile-user-info {
   padding-left: 30px;
   font-size: 14px;
 }
+.profile-user-header {
+  margin-top: 10px;
+}
+.profile-user-table {
+  font-size: 16px;
+}
 
+/*utility css*/
+.pointer {
+  cursor: pointer;
+}
 
 
 
