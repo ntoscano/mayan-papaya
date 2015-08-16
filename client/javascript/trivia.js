@@ -147,8 +147,6 @@
 
     //Timer uses timeout function
     //cancels a task associated with the promise
-    $scope.counter;
-    $scope.gameTimer;
     $scope.setCountdown = function() {
       //resets the timer
       if(angular.isDefined($scope.gameTimer)) {
