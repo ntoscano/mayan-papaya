@@ -78,44 +78,6 @@
           "updated_at": "2014-02-11T23:13:46.044Z",
           "clues_count": 10
         }
-      },
-      {
-        "id": 46208,
-        "answer": "The fittest",
-        "question": "Herbert Spencer summed up Darwin's theory as \"Survival of\" these",
-        "value": 100,
-        "airdate": "2000-11-23T12:00:00.000Z",
-        "created_at": "2014-02-11T23:13:46.199Z",
-        "updated_at": "2014-02-11T23:13:46.199Z",
-        "category_id": 5725,
-        "game_id": null,
-        "invalid_count": null,
-        "category": {
-          "id": 5725,
-          "title": "the mostest",
-          "created_at": "2014-02-11T23:13:46.056Z",
-          "updated_at": "2014-02-11T23:13:46.056Z",
-          "clues_count": 5
-        }
-      },
-      {
-        "id": 46209,
-        "answer": "\"Peter Pan\"",
-        "question": "John Darling, Wendy Darling,Tinker Bell",
-        "value": 100,
-        "airdate": "2000-11-23T12:00:00.000Z",
-        "created_at": "2014-02-11T23:13:46.221Z",
-        "updated_at": "2014-02-11T23:13:46.221Z",
-        "category_id": 5726,
-        "game_id": null,
-        "invalid_count": null,
-        "category": {
-          "id": 5726,
-          "title": "plays by characters",
-          "created_at": "2014-02-11T23:13:46.068Z",
-          "updated_at": "2014-02-11T23:13:46.068Z",
-          "clues_count": 5
-        }
       }
     ];
 
@@ -183,7 +145,7 @@
     };
 
     //Timer uses timeout function
-    //cancels a task associated with the promise    
+    //cancels a task associated with the promise
     $scope.counter = 100;
     $scope.countdown = function() {
       var stopped;
