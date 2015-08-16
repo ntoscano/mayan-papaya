@@ -7,7 +7,9 @@ var secret = 'This really shouldn\'t be in the git repo. Replace with a secure s
 module.exports = {
 
   updateUser: function(req, res){
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~body', req.body);
     var username = req.body.username;
+    console.log('================name', username);
     var score = req.body.score;
     var correct = req.body.correct;
     var correctStreak = req.body.correctStreak;
@@ -27,24 +29,36 @@ module.exports = {
         oldGames = user.gamesPlayed;
         questionsAnswered = user.questionsAnswered + answered;
         questionsAnsweredCorrect = user.questionsAnsweredCorrect + correct;
-        if(user.bestGameScore > score){
+        if(user.bestGameScore < score){
           bestGameScore = score;
         }else{
           bestGameScore = user.bestGameScore;
         }
-        if(user.bestCorrectStreak > correctStreak){
-          bestCorrectStreak = user.bestCorrectStreak;
-        }else{
+        if(user.bestCorrectStreak < correctStreak){
           bestCorrectStreak = correctStreak;
+        }else{
+          bestCorrectStreak = user.bestCorrectStreak;
         }
       }).then(function(){
+        User.findOneAndUpdate(query, {totalXp: oldScore + score}, function(arg){
+          //null
+        });
+        User.findOneAndUpdate(query, {gamesPlayed: oldGames + 1}, function(arg){
+          //null
+        });
+        User.findOneAndUpdate(query, {bestGameScore: bestGameScore}, function(arg){
+          //null
+        });
+        User.findOneAndUpdate(query, {bestCorrectStreak: bestCorrectStreak}, function(arg){
+          //null
+        });
+        User.findOneAndUpdate(query, {questionsAnswered: questionsAnswered}, function(arg){
+          //null
+        });
+        User.findOneAndUpdate(query, {questionsAnsweredCorrect: questionsAnsweredCorrect}, function(arg){
+          //null
+        });
         User.findOneAndUpdate(query, { 
-          totalXp: oldScore + score,
-          gamesPlayed: oldGames + 1,
-          bestGameScore: bestGameScore,
-          bestCorrectStreak: bestCorrectStreak,
-          questionsAnswered: questionsAnswered,
-          questionsAnsweredCorrect: questionsAnsweredCorrect,
           mostRecentGame: {
             xpEarned: score,
             questionsAnswered: answered,
@@ -53,8 +67,9 @@ module.exports = {
         }, function(arg){
           //null
         });
+      }).then(function(){
+        res.statusCode(201);
       });
-    res.statusCode(201);
   },
 
   signin: function (req, res) {
@@ -97,6 +112,7 @@ module.exports = {
     // check to see if user already exists
     findOne({username: username})
       .then(function(user) {
+        console.log('^^^^^^^^^^^', user);
         if (user) {
           res.statusCode = 403;
           res.json({error: 'Username taken'});
@@ -105,9 +121,9 @@ module.exports = {
           create = Q.nbind(User.create, User);
           newUser = {
             username: username,
-            password: password,
-            score: 0
+            password: password
           };
+          console.log('``````````', newUser);
           return create(newUser);
         }
       })
