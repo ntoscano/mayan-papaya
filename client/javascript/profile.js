@@ -35,15 +35,12 @@
       "mostRecentGame": {
         "questionsAnsweredCorrect": 0,
         "questionsAnswered": 0,
-        "gameTime": 0,
         "xpEarned": 0,
-        "gameScore": 0
       },
       "questionsAnsweredCorrect": 0,
       "questionsAnswered": 0,
       "wonLastGame": false,
       "bestCorrectStreak": 0,
-      "bestGameScore": 0,
       "gamesPlayed": 0,
       "totalXp": 0,
       "userLevel": 1
