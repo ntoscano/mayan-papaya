@@ -32,6 +32,9 @@
 .play-trivia-row {
   margin: 15px 0;
 }
+.play-trivia-question-panel {
+  box-shadow: none;
+}
 .play-trivia-question-txt {
   line-height: 150%;
   margin: 0;
