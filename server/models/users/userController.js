@@ -67,9 +67,7 @@ module.exports = {
         }, function(arg){
           //null
         });
-      })
-      res.statusCode = 201;
-      res.json({test: 'test'});
+      });
   },
 
   signin: function (req, res) {
