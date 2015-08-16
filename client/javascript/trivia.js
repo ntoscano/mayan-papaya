@@ -158,7 +158,6 @@
     $scope.getQuestions();
 
     $scope.score = 0;
-    $rootScope.score = $scope.score;
     //for handling user answers to trivia
     $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
@@ -180,6 +179,7 @@
         // }
         $scope.nextLoc();
       }
+      $scope.finalScore = $scope.score || 0;
     };
 
     //Timer uses timeout function
