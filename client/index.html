@@ -2,8 +2,7 @@
 <html>
   <head>
     <title>Trivia with Friends</title>
-
-    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles/bootstrapColorScheme.css" rel="stylesheet">
     <link href="styles/style.css" rel="stylesheet">
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
@@ -28,32 +27,20 @@
         <h1 class="header-title">Trivia with Friends</h1>
 
         <!-- ng-show here is a hack for hiding on signin and signup -->
-        <ul class="nav nav-tabs"
+        <ul class="nav nav-pills"
           ng-controller="NavigationController"
           ng-show="show()">
+          <!-- home tab not used atm -->
           <!-- <li ng-class="getClass('home')" role="presentation"><a href="/#/home">Home</a></li> -->
-          <li ng-class="getClass('trivia')" role="presentation"><a href="/#/trivia">Trivia</a></li>
-          <li ng-class="getClass('profile')" role="presentation"><a href="/#/profile">Profile</a></li>
-          <li ng-class="getClass('stats')" role="presentation"><a href="/#/stats">Stats</a></li>
-          <li class="pull-right" role="presentation"><a ng-click="logout();">Logout</a></li>
+          <li class="pointer" ng-class="getClass('profile')" role="presentation"><a href="/#/profile">Profile</a></li>
+          <li class="pointer" ng-class="getClass('stats')" role="presentation"><a href="/#/stats">Stats</a></li>
+          <li class="pointer" ng-class="getClass('trivia')" role="presentation"><a href="/#/trivia">Trivia</a></li>
+          <li class="pull-right pointer" role="presentation"><a ng-click="logout();">Logout</a></li>
         </ul>
       </div>
     </div>
 
     <div ui-view></div>
-
-    <!-- <footer class ="row footer">
-      <div class="col-md-8 col-md-offset-2">
-        <p class="text-muted">
-          <ul class="nav nav-tabs" ng-controller="FooterController">
-            <li role="presentation"><a href="/#/home">Home</a></li>
-            <li role="presentation"><a href="/#/profile">Profile</a></li>
-            <li role="presentation"><a href="/#/stats">Stats</a></li>
-            <li role="presentation"><a href="/#/trivia">Trivia</a></li>
-          </ul>
-        </p>
-      </div>
-    </footer> -->
 
   </body>
 </html>
