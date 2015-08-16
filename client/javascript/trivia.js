@@ -42,10 +42,13 @@
       });
     };
 
-    obj.sendScore = function(user){
+    obj.updateUser = function(user){
       return $http.put('/api/users', {
         username: user.username,
-        score: user.score
+        score: user.score,
+        correct: user.correct,
+        correctStreak: user.correctStreak,
+        answered: user.answered
       });//TODO: update view based on respose
     };
 
@@ -116,16 +119,26 @@
       }
     ];
 
-    $scope.sendScore = Questions.sendScore;
+    $scope.updateUser = Questions.updateUser;
+    $scope.answered = 0;
+    $scope.correct = 0;
+    $scope.correctStreak = 0;
+    $scope.currentStreak = 0;
+    $scope.username = $rootScope.username;
     //for question navigation
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
       $scope.navLoc++;
       if ($scope.navLoc === 10) {
-        $scope.sendScore({
-          username: $rootScope.username,
-          score: $scope.score
+        $scope.updateUser({
+          username: $scope.username,
+          score: $scope.score,
+          correct: $scope.correct,
+          correctStreak: $scope.correctStreak,
+          answered: $scope.answered
+
         });
+        $scope.answered = 0;
         $location.path("/trivia/endgame"); // render endgame view
       }
     };
@@ -145,13 +158,20 @@
     $scope.getQuestions();
 
     $scope.score = 0;
-    $rootScope.score = $scope.score;
     //for handling user answers to trivia
     $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
+        $scope.answered++;
         var userAns = keyEvent.srcElement.value;
         if(userAns === question.answer) {
+          $scope.correct++;
+          $scope.currentStreak++;
           $scope.score += question.value;
+        }else{
+          $scope.currentStreak = 0;
+        }
+        if($scope.currentStreak > $scope.correctStreak){
+          $scope.correctStreak = $scope.currentStreak;
         }
         // The game is super hard and gives questions of arbitrary point values, so to be fair we probably shouldn't deduct 10% for wrong answers.
         // else {
@@ -161,8 +181,6 @@
       }
       $scope.finalScore = $scope.score || 0;
     };
-
-    $scope.updateUserData = function() {};
 
     //Timer uses timeout function
     //cancels a task associated with the promise    

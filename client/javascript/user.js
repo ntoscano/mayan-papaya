@@ -45,13 +45,13 @@
   app.controller('UserController', ['$scope', '$window', '$location', '$rootScope', 'UserFactory', function($scope, $window, $location, $rootScope, UserFactory) {
     $scope.test = 'test';
     $scope.user = {};
-    $rootScope.username = $scope.user.username;
     $scope.signin = function () {
       $rootScope.username = $scope.user.username;
       UserFactory.signin($scope.user)
         .then(function (token) {
           $window.localStorage.setItem('com.TriviaWithFriends', token);
           $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
+          $rootScope.username = $scope.user.username;
          $location.path('/home');
        })
        .catch(function (error) {
@@ -65,6 +65,7 @@
         .then(function (token) {
           $window.localStorage.setItem('com.TriviaWithFriends', token);
           $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
+          $rootScope.username = $scope.user.username;
           $location.path('/home');
         })
         .catch(function (error) {
