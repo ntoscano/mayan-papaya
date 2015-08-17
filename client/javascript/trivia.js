@@ -8,16 +8,7 @@
     var obj = {};
 
     obj.getCleanAnswer = function(answer) {
-      var str = answer, startItal, endItal;
-      while(str.indexOf('<i>') !== -1) {
-        startItal = str.indexOf('<i>');
-        str = str.slice(0, startItal) + str.slice(startItal + 3);
-      }
-      while(str.indexOf('</i>') !== -1) {
-        endItal = str.indexOf('</i>');
-        str = str.slice(0, endItal) + str.slice(endItal + 4);
-      }
-      return str;
+      return answer.replace(/<\/?i>/g, '');
     };
 
     obj.getClue = function(answer) {
