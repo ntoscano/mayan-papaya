@@ -125,7 +125,7 @@
     $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
         $scope.answered++;
-        var userAns = keyEvent.srcElement.value;
+        var userAns = question.userAnswer;
         if(userAns.toLowerCase() === question.answer.toLowerCase()) {
           $scope.correct++;
           $scope.currentStreak++;

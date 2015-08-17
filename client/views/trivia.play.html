@@ -35,6 +35,7 @@
             class="form-control input-lg play-trivia-answer-input"
             placeholder="{{q.clue}}"
             ng-keypress="checkAnswer($event, q)"
+            ng-model="q.userAnswer"
             autofocus>
           </input>
         </div>
