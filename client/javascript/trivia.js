@@ -120,18 +120,13 @@
           $scope.questions = pureQuestionsArr;
           //clean the italics from the answers and add the clue to the object
           _.each($scope.questions, function(q) {
-            // q.answer = Questions.getCleanAnswer(q.answer);
+            q.answer = Questions.getCleanAnswer(q.answer);
             q.clue = Questions.getClue(q.answer);
           });
         });
     };
     $scope.getQuestions();
 
-<<<<<<< HEAD
-=======
-    $scope.score = 0;
-
->>>>>>> succesfully query db for each question to check if userAnswer is correct
     //for handling user answers to trivia
    $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {

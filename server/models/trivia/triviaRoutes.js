@@ -9,8 +9,10 @@ module.exports = function(app){
     .end(function (result) {
       triviaController.addQuestion(result)
       for(var i = 0; i < result.body.length; i++){
+        result.body[i].clue = triviaController.getClue(result.body[i].answer)
         delete result.body[i].answer;
       }
+
       res.send(result.body);
     });
   });

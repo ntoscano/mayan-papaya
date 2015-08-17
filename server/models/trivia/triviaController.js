@@ -19,6 +19,19 @@ module.exports = {
     });
   },
 
+  getClue: function(answer) {
+    var result = [];
+    var to_ = /([a-zA-Z0-9])/g;
+    for(var i = 0; i < answer.length; i++){
+      if(answer[i].match(to_) !== null) {
+        result.push('_');
+      } else {
+        result.push(answer[i]);
+      }
+    }
+    return result.join('');
+  },
+
   addQuestion: function(result){
     var questions = [];
     var cleanAnswer = function(answer) {
