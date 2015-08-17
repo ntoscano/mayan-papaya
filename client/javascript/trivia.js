@@ -56,7 +56,7 @@
   }]);
 
 
-  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$interval', '$location', '$rootScope', 'ProfileFactory', function($scope, $http, Questions, $interval, $location, $rootScope, ProfileFactory) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$interval', '$location', 'ProfileFactory', function($scope, $http, Questions, $interval, $location, ProfileFactory) {
 
     //sample trivia api response for chai test
     $scope.questions = [

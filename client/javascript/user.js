@@ -43,16 +43,14 @@
     return obj;
   }]);
 
-  app.controller('UserController', ['$scope', '$window', '$location', '$rootScope', 'UserFactory', function($scope, $window, $location, $rootScope, UserFactory) {
+  app.controller('UserController', ['$scope', '$window', '$location', 'UserFactory', function($scope, $window, $location, UserFactory) {
     $scope.test = 'test';
     $scope.user = {};
     $scope.signin = function () {
-      $rootScope.username = $scope.user.username;
       UserFactory.signin($scope.user)
         .then(function (token) {
           $window.localStorage.setItem('com.TriviaWithFriends', token);
           $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
-          $rootScope.username = $scope.user.username;
          $location.path('/profile');
        })
        .catch(function (error) {
@@ -61,12 +59,10 @@
     };
 
     $scope.signup = function () {
-      $rootScope.username = $scope.user.username;
       UserFactory.signup($scope.user)
         .then(function (token) {
           $window.localStorage.setItem('com.TriviaWithFriends', token);
           $window.localStorage.setItem('com.TriviaWithFriends.username', $scope.user.username);
-          $rootScope.username = $scope.user.username;
           $location.path('/profile');
         })
         .catch(function (error) {
