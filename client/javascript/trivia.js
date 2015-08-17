@@ -71,11 +71,17 @@
     ];
 
     $scope.updateUser = Questions.updateUser;
-    $scope.answered = 0;
-    $scope.correct = 0;
-    $scope.correctStreak = 0;
-    $scope.currentStreak = 0;
     $scope.username = ProfileFactory.getUsername();
+
+    // initialize game data
+    $scope.gameDataInit = function() {
+      $scope.answered = 0;
+      $scope.correct = 0;
+      $scope.correctStreak = 0;
+      $scope.currentStreak = 0;
+      $scope.score = 0;
+    };
+
     //for question navigation
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
@@ -90,7 +96,6 @@
           answered: $scope.answered
 
         });
-        $scope.answered = 0;
         $location.path("/trivia/endgame"); // render endgame view
       }
     };
@@ -105,7 +110,7 @@
             var questionObj = data[i];
             var answer = data[i].answer;
             if (/[^a-z]/i.test(answer) || answer === '') { // ^a-z means NOT a letter
-              // data.splice(i,i); do nothing
+              // do nothing
             } else {
               pureQuestionsArr.push(questionObj);
             }
@@ -121,7 +126,6 @@
     };
     $scope.getQuestions();
 
-    $scope.score = 0;
     //for handling user answers to trivia
     $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
@@ -143,7 +147,6 @@
         // }
         $scope.nextLoc();
       }
-      $scope.finalScore = $scope.score || 0;
     };
 
     //Timer uses timeout function
