@@ -28,6 +28,3 @@ dist/
 node_modules/
 bower_components/
 client/lib
-
-## API keys
-server/api-config.js

@@ -13,6 +13,7 @@
         password: user.password
       })
       .then(function (resp) {
+        console.log(resp);
         return resp.data.token;
       });
     };
