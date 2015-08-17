@@ -7,15 +7,15 @@ var secret = 'This really shouldn\'t be in the git repo. Replace with a secure s
 module.exports = {
 
   updateUser: function(req, res){
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~body', req.body);
     var username = req.body.username;
-    console.log('================name', username);
+    var userLevel;
     var score = req.body.score;
     var correct = req.body.correct;
     var correctStreak = req.body.correctStreak;
     var answered = req.body.answered;
     var query = {username: username};
     var oldScore;
+    var newScore;
     var oldGames;
     var bestGameScore;
     var bestCorrectStreak;
@@ -24,11 +24,12 @@ module.exports = {
     var findUser = Q.nbind(User.findOne, User);
     findUser({username: username})
       .then(function(user){
-        console.log('~~~~~', user);
         oldScore = user.totalXp;
+        newScore = oldScore + score;
         oldGames = user.gamesPlayed;
         questionsAnswered = user.questionsAnswered + answered;
         questionsAnsweredCorrect = user.questionsAnsweredCorrect + correct;
+        userLevel = Math.ceil(0.05 * Math.sqrt(newScore));
         if(user.bestGameScore < score){
           bestGameScore = score;
         }else{
@@ -40,7 +41,7 @@ module.exports = {
           bestCorrectStreak = user.bestCorrectStreak;
         }
       }).then(function(){
-        User.findOneAndUpdate(query, {totalXp: oldScore + score}, function(arg){
+        User.findOneAndUpdate(query, {totalXp: newScore}, function(arg){
           //null
         });
         User.findOneAndUpdate(query, {gamesPlayed: oldGames + 1}, function(arg){
@@ -56,6 +57,9 @@ module.exports = {
           //null
         });
         User.findOneAndUpdate(query, {questionsAnsweredCorrect: questionsAnsweredCorrect}, function(arg){
+          //null
+        });
+        User.findOneAndUpdate(query, {userLevel: userLevel}, function(arg){
           //null
         });
         User.findOneAndUpdate(query, { 
