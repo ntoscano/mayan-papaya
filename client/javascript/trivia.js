@@ -38,11 +38,10 @@
         // using Angular $http service to query our questions route
         // success cb executes when request returns
         // route returns a list of questions
-        console.log(data); // arr of 100 questions
         var pureAnswers = [];
         for (var i=0; i<data.length; i++) {
           var answer = data[i].answer;
-          if (!/[^a-z]/i.test(answer) && answer !== '') { // ^a-z means NOT a letter. Thus, only answers with just letters will pass the test.
+          if (!/[^a-z]/i.test(answer) && answer !== '') { // ^a-z means NOT a letter. Thus, only answers with just letters will pass the test
             pureAnswers.push(answer);
           }
         }
