@@ -27,6 +27,7 @@
         // using Angular $http service to query our questions route
         // success cb executes when request returns
         // route returns a list of questions
+        console.log(data);
         obj.questions = data;
       });
     };
@@ -119,17 +120,24 @@
           $scope.questions = pureQuestionsArr;
           //clean the italics from the answers and add the clue to the object
           _.each($scope.questions, function(q) {
-            q.answer = Questions.getCleanAnswer(q.answer);
+            // q.answer = Questions.getCleanAnswer(q.answer);
             q.clue = Questions.getClue(q.answer);
           });
         });
     };
     $scope.getQuestions();
 
+<<<<<<< HEAD
+=======
+    $scope.score = 0;
+
+>>>>>>> succesfully query db for each question to check if userAnswer is correct
     //for handling user answers to trivia
-    $scope.checkAnswer = function(keyEvent, question) {
+   $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
         $scope.answered++;
+        var id = question.id;
+        var value = question.value;
         var userAns = question.userAnswer;
         if(userAns !== undefined && userAns.toLowerCase() === question.answer.toLowerCase()) {
           $scope.correct++;
@@ -148,6 +156,8 @@
         $scope.nextLoc();
       }
     };
+
+
 
     //Timer uses timeout function
     //cancels a task associated with the promise
