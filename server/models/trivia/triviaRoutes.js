@@ -12,19 +12,8 @@ module.exports = function(app){
         result.body[i].clue = triviaController.getClue(result.body[i].answer)
         delete result.body[i].answer;
       }
-
       res.send(result.body);
     });
   });
 
-
-////////////////nothing is using this at the moment
-
-  // app.get('/trivia-categories', function(req, res) {
-  //   unirest.get("http://jservice.io/api/categories?count=10")
-  //   .header("Accept", "application/json")
-  //   .end(function (result) {
-  //     res.send(result.body);
-  //   });
-  // });
 };
