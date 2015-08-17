@@ -122,12 +122,6 @@
             }
           }
 
-          console.log('REVISED ANSWERS BELOW ------------------- ');
-          for (var i=0; i<pureQuestionsArr.length; i++) {
-            console.log(pureQuestionsArr[i].answer);
-          }
-
-
           $scope.questions = pureQuestionsArr;
           //clean the italics from the answers and add the clue to the object
           _.each($scope.questions, function(q) {
