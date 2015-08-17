@@ -38,6 +38,12 @@
         // using Angular $http service to query our questions route
         // success cb executes when request returns
         // route returns a list of questions
+        console.log(data); // arr of 100 questions
+        for (var i=0; i<data.length; i++) {
+          var answer = data[i].answer;
+          console.log(answer);
+        }
+
         obj.questions = data;
       });
     };
