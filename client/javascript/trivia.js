@@ -7,21 +7,6 @@
   app.factory('Questions', ['$http', function($http) {
     var obj = {};
 
-    obj.getCleanAnswer = function(answer) {
-      return answer.replace(/<\/?i>/g, '');
-    };
-
-    obj.getClue = function(answer) {
-      var to_ = /([a-zA-Z0-9])/g;
-      return _.map(answer, function(char) {
-        if (char.match(to_)) {
-          return '_';
-        } else {
-          return char;
-        }
-      }).join('');
-    };
-
     obj.getQuestions = function() { // retrieves questions from backend
       return $http.get('/api/trivia').success(function(data) {
         // using Angular $http service to query our questions route
@@ -104,7 +89,6 @@
     $scope.getQuestions = function() {
       Questions.getQuestions()
         .success(function(data) {
-
           var pureQuestionsArr = [];
           for (var i=0; i<data.length; i++) {
             var questionObj = data[i];
@@ -115,39 +99,41 @@
               pureQuestionsArr.push(questionObj);
             }
           }
-
           $scope.questions = pureQuestionsArr;
-          //clean the italics from the answers and add the clue to the object
-          _.each($scope.questions, function(q) {
-            q.answer = Questions.getCleanAnswer(q.answer);
-            q.clue = Questions.getClue(q.answer);
-          });
         });
     };
     $scope.getQuestions();
 
     //for handling user answers to trivia
-    $scope.checkAnswer = function(keyEvent, question) {
+   $scope.checkAnswer = function(keyEvent, question) {
       if(keyEvent.keyCode === 13) {
         $scope.answered++;
+        var id = question.id;
+        var value = question.value;
         var userAns = question.userAnswer;
-        if(userAns !== undefined && userAns.toLowerCase() === question.answer.toLowerCase()) {
-          $scope.correct++;
-          $scope.currentStreak++;
-          $scope.score += question.value;
-        }else{
-          $scope.currentStreak = 0;
-        }
-        if($scope.currentStreak > $scope.correctStreak){
-          $scope.correctStreak = $scope.currentStreak;
-        }
-        //not used atm since the game is hard as shit
-        // else {
-        //   $scope.score -= Math.floor(question.value / 10);
-        // }
-        $scope.nextLoc();
+        return $http.post('/api/trivia', {
+          id: id,
+          value: value,
+          userAns: userAns
+        }).then(function (res) {
+          var q = res.data;
+          if(q.correct){
+            $scope.correct++;
+            $scope.currentStreak++;
+            $scope.score += value;
+          }else{
+            $scope.currentStreak = 0;
+          }
+          if($scope.currentStreak > $scope.correctStreak){
+            $scope.correctStreak = $scope.currentStreak;
+          }
+          $scope.nextLoc();
+        });
       }
+      $scope.finalScore = $scope.score || 0;
     };
+
+
 
     //Timer uses timeout function
     //cancels a task associated with the promise
