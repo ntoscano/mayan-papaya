@@ -12,7 +12,6 @@
         // using Angular $http service to query our questions route
         // success cb executes when request returns
         // route returns a list of questions
-        console.log(data);
         obj.questions = data;
       });
     };
@@ -90,7 +89,6 @@
     $scope.getQuestions = function() {
       Questions.getQuestions()
         .success(function(data) {
-
           var pureQuestionsArr = [];
           for (var i=0; i<data.length; i++) {
             var questionObj = data[i];
@@ -101,13 +99,7 @@
               pureQuestionsArr.push(questionObj);
             }
           }
-
           $scope.questions = pureQuestionsArr;
-          //clean the italics from the answers and add the clue to the object
-          _.each($scope.questions, function(q) {
-            q.answer = Questions.getCleanAnswer(q.answer);
-            q.clue = Questions.getClue(q.answer);
-          });
         });
     };
     $scope.getQuestions();
@@ -137,7 +129,7 @@
           }
           $scope.nextLoc();
         });
-      };
+      }
       $scope.finalScore = $scope.score || 0;
     };
 

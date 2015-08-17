@@ -21,9 +21,9 @@ module.exports = {
 
   getClue: function(answer) {
     var to_ = /([a-zA-Z0-9])/g;
-    var answer = answer.split('');
+    var answerArr = answer.split('');
     var retString = [];
-    answer.forEach(function(char) {
+    answerArr.forEach(function(char) {
       if (char.match(to_)) {
         retString.push('_');
       } else {
