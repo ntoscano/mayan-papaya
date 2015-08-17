@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('Trivia', []);
+  var app = angular.module('Trivia', ['Profile']);
 
   //factory to get and hold question data
   //also has methods for cleaning and augmenting question data
@@ -56,7 +56,7 @@
   }]);
 
 
-  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$interval', '$location', '$rootScope', function($scope, $http, Questions, $interval, $location, $rootScope) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$interval', '$location', 'ProfileFactory', function($scope, $http, Questions, $interval, $location, ProfileFactory) {
 
     //sample trivia api response for chai test
     $scope.questions = [
@@ -86,7 +86,7 @@
     $scope.correct = 0;
     $scope.correctStreak = 0;
     $scope.currentStreak = 0;
-    $scope.username = $rootScope.username;
+    $scope.username = ProfileFactory.getUsername();
     //for question navigation
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
