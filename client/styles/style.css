@@ -1,7 +1,7 @@
 
 /*for testing*/
 * {
-  border: 1px dotted green;
+  /*border: 1px dotted green;*/
 }
 
 /*index header css*/
@@ -36,7 +36,7 @@
   box-shadow: none;
 }
 .play-trivia-question-txt {
-  line-height: 150%;
+  line-height: 170%;
   margin: 0;
 }
 .play-trivia-answer-input {
@@ -45,13 +45,18 @@
   font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
 }
 
+/*trivia endgame css*/
+.endgame-summary-col {
+  margin-top: 50px;
+}
+.endgame-summary-table {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
 /*/signin and /signout css*/
 .signin-margin, .signup-margin {
   margin: 5px 0;
-}
-
-.endgame-row {
-  margin: 60px 0;
 }
 
 /*profile css*/

@@ -24,40 +24,45 @@
 
       <!-- game summary -->
       <div class="row">
-        <div class="col-md-12 well">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="row">
+            <div class="endgame-summary-col col-md-6 col-md-offset-3">
 
-          <span class="lead">Game Summary</span>
-          <table class="profile-user-table table table-hover">
-            <tr>
-              <td class="col-md-8">
-                XP Earned:
-              </td>
-              <td>
-                {{user.mostRecentGame.xpEarned}}
-              </td>
-            </tr>
+              <span class="lead">Game Summary</span>
+                <table class="endgame-summary-table table table-hover text-left">
+                  <tr>
+                    <td class="col-md-8">
+                      XP Earned:
+                    </td>
+                    <td class="text-right">
+                      {{score}}
+                    </td>
+                  </tr>
 
-            <tr>
-              <td>
-                Questions Answered:
-              </td>
-              <td>
-                {{user.mostRecentGame.questionsAnswered}}
-              </td>
-            </tr>
+                  <tr>
+                    <td>
+                      Questions Answered:
+                    </td>
+                    <td class="text-right">
+                      {{answered}}
+                    </td>
+                  </tr>
 
-            <tr>
-              <td>
-                Correct Answers:
-              </td>
-              <td>
-                {{user.mostRecentGame.questionsAnsweredCorrect}}
-              </td>
-            </tr>
-          </table>
+                  <tr>
+                    <td>
+                      Correct Answers:
+                    </td>
+                    <td class="text-right">
+                      {{correct}}
+                    </td>
+                  </tr>
+                </table>
 
+            </div>
+          </div>
         </div>
       </div>
+
 
     </div>
 
