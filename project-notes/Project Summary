@@ -1,0 +1,242 @@
+// The inner workings of Trivia With Friends:
+
+/*
+1) ClIENT SIDE:
+
+Navigation.js
+Profile.js
+Stats.js
+Trivia.js
+User.js (for user functions)
+
+Index.html (includes nav)
+Profile.html
+Stats.html
+ -Stats.personal.html
+ -Stats.global.html
+Trivia.html
+ -Trivia.play.html
+ -Trivia.endgame.html
+Signin.html
+Signup.html
+
+App.js (route handling)
+
+
+
+2) SERVER SIDE:
+
+App.js (Our server--different file than the one in client)
+
+Config
+ -Helper
+ -Middleware
+Models
+ Trivia:
+ -TriviaController.js
+ -TriviaModel.js
+ -TriviaRoutes.js
+ Users
+ -UserController.js
+ -UserModel.js
+ -UserRoutes.js
+
+
+3) TESTS:
+
+Client-side:
+-ProfileControllerSpec.js
+-TriviaControllerSpec.js
+-TriviaFactorySpec.js
+-UserControllerSpec.js
+
+Server-side:
+-ServerSpec.js
+
+
+
+4) ADDITIONAL FILES:
+
+Bower.json (w/ language dependencies) & .bowerrc
+.gitignore
+.travis.yml (runs grunt test)
+Gruntfile (runs jshint, mochaTest, and karma)
+karma.conf (browser-side testing using Phantom.js)
+Package.json (w/ module and developer dependencies)
+
+
+
+
+
+
+1) REVIEW OF CLIENT SIDE:
+
+a) Navigation.js
+b) Profile.js
+c) Stats.js
+d) Trivia.js
+e) User.js (for user functions)
+
+a) Index.html (includes nav)
+b) Profile.html
+c) Stats.html
+ -Stats.personal.html
+ -Stats.global.html
+d) Trivia.html
+ -Trivia.play.html
+ -Trivia.endgame.html
+e) Signin.html
+   Signup.html
+
+f) App.js (route handling)
+
+
+
+a) Navigation.js & Index.html
+Use $state service to communicate 'active' or '' to ng-class directive.
+Use $location service to communicate false or true to ng-show directive.
+
+b)Profile.js and Profile.html
+
+
+
+
+2) REVIEW OF SERVER SIDE:
+
+a) App.js (Our server--different file than the one in client)
+
+b) Config
+ -Helper
+ -Middleware
+c) Models
+ Trivia:
+ -TriviaController.js
+ -TriviaModel.js
+ -TriviaRoutes.js
+ Users:
+ -UserController.js
+ -UserModel.js
+ -UserRoutes.js
+
+a) App.js (server)
+  Express, mongoose, and server are initialized here.
+  With a require statement, we inject our server and express into config/middleware.js for setup:
+
+  require('./server/config/middleware.js')(app, express);
+
+  We also export our server for easy testing.
+
+b1) Middleware.js
+
+  Requires all express middleware and sets it up.
+  -morgan: for logging incoming requests
+  -bodyParser: populates req.body with (among other things) the value of any given POST parameter
+  -helpers: our custom middleware in helper.js (described next)
+
+  We create 2 routers, the userRouter and triviaRouter, for these 2 features of our program.
+  Each feature has its own folder with a model, controller, and route file.
+
+  Our authentication is set up in middleware.js as well. It references our helper.js file:
+
+  // authentication middleware used to decode token on a request to the server
+  app.use(helpers.errorLogger);
+  app.use(helpers.errorHandler);
+
+  Lastly, with another require statement, we inject our routers into their respective route files:
+
+  require('../models/users/userRoutes.js')(userRouter);
+  require('../models/trivia/triviaRoutes.js')(triviaRouter);
+
+b2) Helper.js
+
+  Requires jwt module, which lets us authenticate HTTP requests using JWT tokens (protects API endpoint)
+
+  Has errorLogger and errorHandler functions, which log errors and send error messages to the client, respectively.
+
+  Decode function decodes token and will attach said user to the request.
+
+c) Models
+c2) Users
+
+  It makes most sense to explain the model, controller, and the routes in that order.
+
+  I) UserModel.js:
+  Requires mongoose, bcrypt, and Q modules.
+  -mongoose: used for database schemas; works in an asynchronous environment
+  -bcyrpt: hashes and safely stores passwords
+  -Q: Uses promises and the "then" method to eliminate need for callbacks.
+
+  UserSchema using mongoose contains:
+  username
+  password
+  salt
+  totalXp
+  gamesPlayed
+  bestGameScore
+  bestCorrectStreak
+  questionsAnswered
+  questionsAnsweredCorrect
+  mostRecentGame
+   -xpEarned
+   -questionsAnswered
+   -questionsAnsweredCorrect
+
+  UserSchema has 2 functions:
+  comparePasswords: uses Q and bcrypt to compare an entered password with the actual saved password. Convenience method for comparing passwords later on.
+
+  UserSchema.pre('save' ... : uses a 'pre' hook and bcrypt to generate salt and hash password. The hooked method, in this case save, will not be executed until the password is hashed.
+
+
+  II) UserController.js:
+
+  Onto the UserController. It requires the userModel, Q module, and jwt.
+  All UserController functions are within module.exports.
+
+  Functions:
+
+  updateUser:
+  Gets the variables username, score, correct, correctStreak, and answered as properties of req.body.
+
+  Finds a user in the database using Q.nbind, which creates a promise-returning function.
+
+  var findUser = Q.nbind(User.findOne, User);
+  -User, remember, is our mongoose model
+
+
+  var Kitty = mongoose.model("Kitty");
+var findKitties = Q.nbind(Kitty.find, Kitty);
+  findUser and .then promise, and then adjusts their properties.
+
+
+
+  III) UserRoutes.js:
+
+  Requires the userController.
+  All UserRoutes are within module.exports.
+
+  On a put, post, or get request from a specific page, the appropriate function in UserController will be called.
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  the respective file is required in middleware.js and injected with its mini router
+  that route file then requires the respective controller and sets up all the routes
+  that controller then requires the respective model and sets up all our endpoints which respond to requests
+
+
+
+
+
+
+
+*/
+
