@@ -38,16 +38,7 @@
         // using Angular $http service to query our questions route
         // success cb executes when request returns
         // route returns a list of questions
-        var pureAnswers = [];
-        for (var i=0; i<data.length; i++) {
-          var answer = data[i].answer;
-          if (!/[^a-z]/i.test(answer) && answer !== '') { // ^a-z means NOT a letter. Thus, only answers with just letters will pass the test
-            pureAnswers.push(answer);
-          }
-        }
-        console.log(pureAnswers);
-        console.log(pureAnswers.length);
-        obj.questions = pureAnswers;
+        obj.questions = data;
       });
     };
 
@@ -119,7 +110,25 @@
     $scope.getQuestions = function() {
       Questions.getQuestions()
         .success(function(data) {
-          $scope.questions = data;
+
+          var pureQuestionsArr = [];
+          for (var i=0; i<data.length; i++) {
+            var questionObj = data[i];
+            var answer = data[i].answer;
+            if (/[^a-z]/i.test(answer) || answer === '') { // ^a-z means NOT a letter
+              // data.splice(i,i); do nothing
+            } else {
+              pureQuestionsArr.push(questionObj);
+            }
+          }
+
+          console.log('REVISED ANSWERS BELOW ------------------- ');
+          for (var i=0; i<pureQuestionsArr.length; i++) {
+            console.log(pureQuestionsArr[i].answer);
+          }
+
+
+          $scope.questions = pureQuestionsArr;
           //clean the italics from the answers and add the clue to the object
           _.each($scope.questions, function(q) {
             q.answer = Questions.getCleanAnswer(q.answer);
