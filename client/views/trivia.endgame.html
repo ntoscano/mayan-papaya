@@ -22,6 +22,43 @@
         </div>
       </div>
 
+      <!-- game summary -->
+      <div class="row">
+        <div class="col-md-12 well">
+
+          <span class="lead">Game Summary</span>
+          <table class="profile-user-table table table-hover">
+            <tr>
+              <td class="col-md-8">
+                XP Earned:
+              </td>
+              <td>
+                {{user.mostRecentGame.xpEarned}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Questions Answered:
+              </td>
+              <td>
+                {{user.mostRecentGame.questionsAnswered}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                Correct Answers:
+              </td>
+              <td>
+                {{user.mostRecentGame.questionsAnsweredCorrect}}
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+
     </div>
 
   </div>

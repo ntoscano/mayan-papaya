@@ -38,7 +38,7 @@
         correct: user.correct,
         correctStreak: user.correctStreak,
         answered: user.answered
-      });//TODO: update view based on respose
+      });
     };
 
     return obj;
