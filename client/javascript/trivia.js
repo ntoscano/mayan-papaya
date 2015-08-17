@@ -89,7 +89,6 @@
     $scope.getQuestions = function() {
       Questions.getQuestions()
         .success(function(data) {
-          var pureQuestionsArr = [];
           $scope.questions = data;
         });
     };
