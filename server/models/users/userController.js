@@ -29,7 +29,7 @@ module.exports = {
         oldGames = user.gamesPlayed;
         questionsAnswered = user.questionsAnswered + answered;
         questionsAnsweredCorrect = user.questionsAnsweredCorrect + correct;
-        userLevel = Math.ceil(.05 * Math.sqrt(newScore));
+        userLevel = Math.ceil(0.05 * Math.sqrt(newScore));
         if(user.bestGameScore < score){
           bestGameScore = score;
         }else{
