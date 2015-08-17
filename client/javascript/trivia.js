@@ -56,7 +56,7 @@
   }]);
 
 
-  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$timeout', '$location', '$rootScope', function($scope, $http, Questions, $timeout, $location, $rootScope) {
+  app.controller('TriviaController', ['$scope', '$http', 'Questions', '$interval', '$location', '$rootScope', function($scope, $http, Questions, $interval, $location, $rootScope) {
 
     //sample trivia api response for chai test
     $scope.questions = [
@@ -91,6 +91,7 @@
     $scope.navLoc = 0;
     $scope.nextLoc = function() {
       $scope.navLoc++;
+      $scope.setCountdown();
       if ($scope.navLoc === 10) {
         $scope.updateUser({
           username: $scope.username,
@@ -135,7 +136,7 @@
         if($scope.currentStreak > $scope.correctStreak){
           $scope.correctStreak = $scope.currentStreak;
         }
-        // The game is super hard and gives questions of arbitrary point values, so to be fair we probably shouldn't deduct 10% for wrong answers.
+        //not used atm since the game is hard as shit
         // else {
         //   $scope.score -= Math.floor(question.value / 10);
         // }
@@ -146,20 +147,27 @@
 
     //Timer uses timeout function
     //cancels a task associated with the promise
-    $scope.counter = 100;
-    $scope.countdown = function() {
-      var stopped;
-      stopped = $timeout(function() {
+    $scope.setCountdown = function() {
+      //resets the timer
+      if(angular.isDefined($scope.gameTimer)) {
+        $interval.cancel($scope.gameTimer);
+        $scope.gameTimer = undefined;
+      }
+      //initialize timer number
+      $scope.counter = 20;
+      //countdown
+      $scope.gameTimer = $interval(function() {
         $scope.counter--;
-        if ($scope.counter === 0) {
-          $timeout.cancel(stopped);
-          // go to end-game view
-          $location.path("/trivia/endgame");
-        } else {
-          $scope.countdown();
+        if($scope.counter === 0) {
+          $scope.nextLoc();
+          $scope.setCountdown();
         }
       }, 1000);
     };
+    //cancel timer if user navigates away from questions
+    $scope.$on('$destroy', function() {
+      $interval.cancel($scope.gameTimer);
+    });
 
   }]);
 
