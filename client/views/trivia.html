@@ -1,11 +1,10 @@
 <div class="text-center" ng-controller="TriviaController">
 
   <br>
-  <!-- used to have countdown() here -->
   <a class="play-trivia-btn btn btn-info btn-lg btn-block"
     ui-sref=".play"
     ng-init="clicked=false"
-    ng-click="clicked=!clicked; setCountdown()"
+    ng-click="clicked=!clicked; setCountdown(); gameDataInit()"
     ng-show="clicked===false">
     Play Trivia
   </a>
