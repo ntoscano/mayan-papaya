@@ -1,6 +1,13 @@
-// The inner workings of Trivia With Friends:
-
 /*
+Amazing readmes include:
+
+A description of your app.
+A link to a deployed version.
+Screenshots.
+Your tech stack.
+The challenges you faced.
+A map of your codebase, and if appropriate, instructions on how to dive in and read the code.
+
 1) ClIENT SIDE:
 
 Navigation.js
@@ -69,7 +76,7 @@ Package.json (w/ module and developer dependencies)
 
 
 
-1) REVIEW OF CLIENT SIDE:
+1) FURTHER REVIEW OF CLIENT SIDE:
 
 a) Navigation.js
 b) Profile.js
@@ -101,7 +108,7 @@ b)Profile.js and Profile.html
 
 
 
-2) REVIEW OF SERVER SIDE:
+2) FURTHER REVIEW OF SERVER SIDE:
 
 a) App.js (Our server--different file than the one in client)
 
@@ -156,11 +163,50 @@ b2) Helper.js
   Decode function decodes token and will attach said user to the request.
 
 c) Models
+c1) Trivia
+
+  It makes most sense to explain the model, controller, and the routes in that order.
+
+  I) triviaModel.js
+  Requires mongoose.
+
+  TriviaSchema contains:
+  id
+  answer
+
+  Trivia model/schema is exported:
+
+  module.exports = mongoose.model('Trivia', TriviaSchema);
+
+  II) triviaController.js
+  Onto the triviaController. It requires the triviaModel, and Q module.
+
+  var Trivia = require('./triviaModel.js');
+  var Q = require('q');
+
+  triviaController functions are within module.exports.
+
+  Functions:
+  checkAnswer: 
+  Finds a question by id using Q.nbind, which creates a promise-returning function.
+
+  var findQuestion = Q.nbind(Trivia.findOne, Trivia);
+  -Trivia refers to our model
+
+  III) triviaRoutes.js
+  Requires the triviaController and unirest.
+  -unirest was a module recommended by our API
+  All triviaRoutes are within module.exports.
+
+  POST request to '/': call checkAnswer in triviaController.
+  GET request to '/': query API for 10 questions
+
+
 c2) Users
 
   It makes most sense to explain the model, controller, and the routes in that order.
 
-  I) UserModel.js:
+  I) userModel.js:
   Requires mongoose, bcrypt, and Q modules.
   -mongoose: used for database schemas; works in an asynchronous environment
   -bcyrpt: hashes and safely stores passwords
@@ -186,9 +232,9 @@ c2) Users
 
   UserSchema.pre('save' ... : uses a 'pre' hook and bcrypt to generate salt and hash password. The hooked method, in this case save, will not be executed until the password is hashed.
 
+  User model/schema is exported.
 
-  II) UserController.js:
-
+  II) userController.js:
   Onto the UserController. It requires the userModel, Q module, and jwt.
   All UserController functions are within module.exports.
 
@@ -201,16 +247,26 @@ c2) Users
 
   var findUser = Q.nbind(User.findOne, User);
   -User, remember, is our mongoose model
+  -.findOne is a method to query the database
+
+  findUser then finds a user and, using .then promises, updates them in the database.
+
+  signin:
+  Uses Q.nbind again to find the user. Then uses the comparePasswords function from UserModel to sign-in or reject the attempted sign-in.
+
+  signup:
+  Creates a new user with the following:
+
+  create = Q.nbind(User.create, User);
+
+  checkAuth:
+  Checks to see if the user is authenticated. Grabs the token, if any, in the header and then decodes it. It ends up as user object, which is used to see if the user exists in the database.
+
+  getUserData:
+  Finds the user again using Q.nbind. And if found, respond with a stringified JSON object of the user.
 
 
-  var Kitty = mongoose.model("Kitty");
-var findKitties = Q.nbind(Kitty.find, Kitty);
-  findUser and .then promise, and then adjusts their properties.
-
-
-
-  III) UserRoutes.js:
-
+  III) userRoutes.js:
   Requires the userController.
   All UserRoutes are within module.exports.
 
