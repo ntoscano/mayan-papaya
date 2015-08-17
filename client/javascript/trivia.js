@@ -99,7 +99,19 @@
     $scope.getQuestions = function() {
       Questions.getQuestions()
         .success(function(data) {
-          $scope.questions = data;
+
+          var pureQuestionsArr = [];
+          for (var i=0; i<data.length; i++) {
+            var questionObj = data[i];
+            var answer = data[i].answer;
+            if (/[^a-z]/i.test(answer) || answer === '') { // ^a-z means NOT a letter
+              // data.splice(i,i); do nothing
+            } else {
+              pureQuestionsArr.push(questionObj);
+            }
+          }
+
+          $scope.questions = pureQuestionsArr;
           //clean the italics from the answers and add the clue to the object
           _.each($scope.questions, function(q) {
             q.answer = Questions.getCleanAnswer(q.answer);
