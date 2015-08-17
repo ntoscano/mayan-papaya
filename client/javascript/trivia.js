@@ -21,16 +21,14 @@
     };
 
     obj.getClue = function(answer) {
-      var result = [];
       var to_ = /([a-zA-Z0-9])/g;
-      _.each(answer, function(char) {
-        if(char.match(to_) !== null) {
-          result.push('_');
+      return _.map(answer, function(char) {
+        if (char.match(to_)) {
+          return '_';
         } else {
-          result.push(char);
+          return char;
         }
-      });
-      return result.join('');
+      }).join('');
     };
 
     obj.getQuestions = function() { // retrieves questions from backend
